@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DeviceExtendedInfo</key>
+	<dict>
+		<key>HP ScanJet Pro 3000 s3</key>
+		<dict>
+			<key>SuppressCountryAndLangaugeSetup</key>
+			<true/>
+			<key>SuppressWirelessOverUSB</key>
+			<true/>
+		</dict>
+		<key>HP ScanJet Pro 3500 f1</key>
+		<dict>
+			<key>SuppressWirelessOverUSB</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>USBDevices</key>
+	<dict>
+		<key>0x1c05</key>
+		<dict>
+			<key>device type</key>
+			<string>scanner</string>
+			<key>Product Identification</key>
+			<string>HP Scanjet 200</string>
+		</dict>
+		<key>0x1d05</key>
+		<dict>
+			<key>device type</key>
+			<string>scanner</string>
+			<key>Product Identification</key>
+			<string>HP Scanjet 300</string>
+		</dict>
+		<key>0x1705</key>
+		<dict>
+			<key>device type</key>
+			<string>scanner</string>
+			<key>Product Identification</key>
+			<string>HP Scanjet 5590</string>
+		</dict>
+		<key>0x4705</key>
+		<dict>
+			<key>device type</key>
+			<string>scanner</string>
+			<key>Product Identification</key>
+			<string>HP Scanjet N6310</string>
+		</dict>
+		<key>0x4605</key>
+		<dict>
+			<key>device type</key>
+			<string>scanner</string>
+			<key>Product Identification</key>
+			<string>HP Scanjet G4050</string>
+		</dict>
+		<key>0x4505</key>
+		<dict>
+			<key>device type</key>
+			<string>scanner</string>
+			<key>Product Identification</key>
+			<string>HP Scanjet G4010</string>
+		</dict>
+		<key>0x4305</key>
+		<dict>
+			<key>device type</key>
+			<string>scanner</string>
+			<key>Product Identification</key>
+			<string>HP Scanjet G3110</string>
+		</dict>
+		<key>0x3905</key>
+		<dict>
+			<key>device type</key>
+			<string>scanner</string>
+			<key>Product Identification</key>
+			<string>HP Scanjet 8270</string>
+		</dict>
+		<key>0x8411</key>
+		<dict>
+			<key>device type</key>
+			<string>scanner</string>
+			<key>Product Identification</key>
+			<string>HP Scanjet 7500</string>
+		</dict>
+		<key>0x3e05</key>
+		<dict>
+			<key>device type</key>
+			<string>scanner</string>
+			<key>Product Identification</key>
+			<string>HP Scanjet Pro 3000 s2</string>
+		</dict>
+		<key>0x6005</key>
+		<dict>
+			<key>device type</key>
+			<string>scanner</string>
+			<key>Product Identification</key>
+			<string>HP ScanJet Pro 2500 f1</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

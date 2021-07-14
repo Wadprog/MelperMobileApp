@@ -1,0 +1,138 @@
+%%USER_PATH%%/Library/Application Support/Hewlett-Packard/ScanShortcuts/**/*.workflow
+%%USER_PATH%%/Library/Application Support/Hewlett-Packard/ScanShortcuts/**
+%%USER_PATH%%/Library/Application Support/Hewlett-Packard/ScanShortcuts
+%%USER_PATH%%/Library/Application Support/Hewlett-Packard/Customer Participation/**
+%%USER_PATH%%/Library/Application Support/Hewlett-Packard/Customer Participation
+%%USER_PATH%%/Library/Application Support/Hewlett-Packard/Product Improvement Study/**
+%%USER_PATH%%/Library/Application Support/Hewlett-Packard/Product Improvement Study
+%%USER_PATH%%/Library/Application Support/Hewlett-Packard
+%%USER_PATH%%/Library/Application Support/HP/ScanShortcuts/**/*.workflow
+%%USER_PATH%%/Library/Application Support/HP/ScanShortcuts/**
+%%USER_PATH%%/Library/Application Support/HP/ScanShortcuts
+%%USER_PATH%%/Library/Application Support/HP/Customer Participation/**
+%%USER_PATH%%/Library/Application Support/HP/Customer Participation
+%%USER_PATH%%/Library/Application Support/HP/Product Improvement Study/**
+%%USER_PATH%%/Library/Application Support/HP/Product Improvement Study
+%%USER_PATH%%/Library/Application Support/HP
+%%USER_PATH%%/Library/LaunchAgents/com.hp.devicemonitor.plist
+%%USER_PATH%%/Library/LaunchAgents/com.hp.productresearch.plist
+%%USER_PATH%%/Library/Preferences/com.hp.printerUtility.plist
+%%USER_PATH%%/Library/Preferences/com.hp.printerutility.plist
+%%USER_PATH%%/Library/Preferences/com.hp.printerselector.plist
+%%USER_PATH%%/Library/Preferences/com.hp.Uninstaller.plist
+%%USER_PATH%%/Library/Preferences/com.hp.Installer.plist
+%%USER_PATH%%/Library/Preferences/com.hp.HPScheduler.plist
+%%USER_PATH%%/Library/Preferences/com.hp.customer.uploader.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scan.HPStudioScan.plist
+%%USER_PATH%%/Library/Preferences/com.hp.DigitalFaxArchiveSettings.plist
+%%USER_PATH%%/Library/Preferences/com.hp.customer.participation.plist
+%%USER_PATH%%/Library/Preferences/com.hp.devicemonitor.plist
+%%USER_PATH%%/Library/Preferences/com.hp.productresearch.plist
+%%USER_PATH%%/Library/Preferences/Hewlett-Packard/Fax Documents/HPFaxArchive.database
+%%USER_PATH%%/Library/Preferences/HP/Fax Documents/HPFaxArchive.database
+%%USER_PATH%%/Library/Preferences/widget-com.hp.widget.inkwidget.plist
+%%USER_PATH%%/Library/Preferences/com.hp.messagecenter.plist
+%%USER_PATH%%/Library/Preferences/com.hp.Photosmart.Print.plist
+%%USER_PATH%%/Library/Preferences/com.hp.Photosmart.Create.plist
+%%USER_PATH%%/Library/Preferences/com.hp.Photosmart.keywords.plist
+%%USER_PATH%%/Library/Preferences/com.hp.Photosmart.Share.plist
+%%USER_PATH%%/Library/Preferences/com.hp.Photosmart.Stitch.plist
+%%USER_PATH%%/Library/Preferences/com.hp.Photosmart.Edit.plist
+%%USER_PATH%%/Library/Preferences/com.hp.Photosmart.Studio.plist
+%%USER_PATH%%/Library/Preferences/com.hp.HPScheduler.plist
+%%USER_PATH%%/Library/Preferences/com.hp.Photosmart.Studio.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scan.ds.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scan.app.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scan.framework.profile.plist
+%%USER_PATH%%/Library/Preferences/com.hp.devices.scantasks.plist
+%%USER_PATH%%/Library/Preferences/com.hp.aio.faxutility.plist
+%%USER_PATH%%/Library/Preferences/com.hp.hp_send_fax.plist
+%%USER_PATH%%/Library/Preferences/Hewlett-Packard Preferences/com.hp.FaxPreferences.plist
+%%USER_PATH%%/Library/Preferences/Hewlett-Packard Preferences
+%%USER_PATH%%/Library/Preferences/HP Preferences/com.hp.FaxPreferences.plist
+%%USER_PATH%%/Library/Preferences/HP Preferences
+%%USER_PATH%%/Library/Preferences/com.hp.SetupAssistant.plist
+%%USER_PATH%%/Library/Preferences/com.hp.softwareupdate.plist
+%%USER_PATH%%/Library/Preferences/com.hp.imagedropper.plist
+%%USER_PATH%%/Library/Preferences/com.hp.Device.Manager.plist
+%%USER_PATH%%/Library/Preferences/com.hp.photosmart.scandestinations.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scanpro.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scanpro.profiles
+%%USER_PATH%%/Library/Preferences/Hewlett-Packard/Fax Documents
+%%USER_PATH%%/Library/Preferences/HP/Fax Documents
+%%USER_PATH%%/Library/Preferences/HP
+%%USER_PATH%%/Library/Preferences/com.hp.customer.participation.LSSharedFileList.plist
+%%USER_PATH%%/Library/Preferences/com.hp.utility.productimprovementstudy.plist
+%%USER_PATH%%/Library/Preferences/com.hp.customer.uploader.LSSharedFileList.plist
+%%USER_PATH%%/Library/Preferences/com.hp.events.HPEventBezelHelper.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scan.HPScanCaptureMgr.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scanModule.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scanModule2.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scanModule3.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scanModule4.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scancaps.plist
+%%USER_PATH%%/Library/Preferences/com.hp.events.hpalerts.plist
+%%USER_PATH%%/Library/Preferences/com.hp.task.productimprovementstudy.plist
+%%USER_PATH%%/Library/Preferences/com.hp.scancaps.plist
+%%USER_PATH%%/Library/Preferences/com.hp.events.emailalerts.plist
+%%USER_PATH%%/Library/Containers/com.hp.EasyScanMac
+%%USER_PATH%%/Library/Containers/com.hp.scan.request.handler
+%%USER_PATH%%/Library/Group Containers/6HB5Y2QTA3.ScanToComputerAppGroup
+%%USER_PATH%%/Library/Widgets/HP Ink Widget.wdgt
+%%USER_PATH%%/Library/Containers/com.hp.EasyScanMac
+%%USER_PATH%%/Library/Containers/com.hp.scan.request.handler
+%%USER_PATH%%/Library/Group Containers/*.ScanToComputerAppGroup
+/Library/Application Support/Hewlett-Packard/Customer Participation/Config.plist
+/Library/Application Support/Hewlett-Packard/Customer Participation
+/Library/Application Support/Hewlett-Packard/Uninstaller/**
+/Library/Application Support/Hewlett-Packard/Uninstaller
+/Library/Application Support/Hewlett-Packard
+/Library/Application Support/HP/Customer Participation/Config.plist
+/Library/Application Support/HP/Customer Participation
+/Library/Application Support/HP/Uninstaller/**
+/Library/Application Support/HP/Uninstaller
+/Library/Application Support/HP
+/Library/Caches/com.hp.dmf.DataStore
+/Library/Caches/.9a/*
+/Library/Caches/.9a
+/Library/Documentation/Help/Hewlett-Packard
+/Library/Documentation/Help/HP
+/Library/Documentation/Help/*_OUG
+/Library/Image Capture/Support/Hewlett-Packard/Devices
+/Library/Image Capture/Support/Hewlett-Packard/Frameworks
+/Library/Image Capture/Support/Hewlett-Packard
+/Library/Image Capture/Support/HP/Devices
+/Library/Image Capture/Support/HP/Frameworks
+/Library/Image Capture/Support/HP
+/Library/Preferences/Network Printer Setup Utility/HPNCTDeviceSupport.plist
+/Library/Preferences/com.hp.LaserJetMFPDeviceList.plist
+/Library/Preferences/Hewlett-Packard Preferences/com.hp.SetupAssistant.plist
+/Library/Preferences/Hewlett-Packard Preferences/com.hp.HPSmartDeviceConfig.plist
+/Library/Preferences/Hewlett-Packard Preferences/Fax Logs
+/Library/Preferences/Hewlett-Packard Preferences
+/Library/Preferences/HP Preferences/com.hp.SetupAssistant.plist
+/Library/Preferences/HP Preferences/com.hp.HPSmartDeviceConfig.plist
+/Library/Preferences/HP Preferences/Fax Logs
+/Library/Preferences/HP Preferences
+/Library/Printers/hp/hpio/HPIOPrinterClassDriver.plugin
+/Library/Printers/hp/hpio
+/Library/Printers/hp/Utilities/HPPU Plugins/*.task
+/Library/Printers/hp/Utilities/HPPU Plugins
+/Library/Printers/hp/Utilities
+/Library/Printers/hp/Profiles/Contents/Info.plist
+/Library/Printers/hp/Profiles/Contents
+/Library/Printers/hp/Profiles
+/Library/Printers/hp
+/Library/Printers/PPDs/Contents/Resources/HP*.gz
+/Library/Printers/PPDs/Contents/Resources/hp*.gz
+/Library/Printers/PPDs/Contents/Resources
+/Library/Printers/PPDs/Contents
+/Library/Printers/PPDs
+/Applications/Hewlett-Packard/HP Utility.app
+/Applications/Hewlett-Packard/HP Wireless Print Center.webloc
+/Applications/Hewlett-Packard
+/Applications/HP/HP Utility.app
+/Applications/HP/HP Wireless Print Center.webloc
+/Applications/HP
+/Applications/Utilities/HP Utility
+
