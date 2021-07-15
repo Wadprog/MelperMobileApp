@@ -1,10 +1,11 @@
 import React from 'react'
-// Dependencies  
+// Dependencies
 import styled from 'styled-components/native'
 import { TouchableHighlight } from 'react-native'
 
 //Custom dependencies
 import color from '../config/colors'
+import { appLogo } from '../config/image'
 
 const Button = styled.View`
   width: 80px;
@@ -21,11 +22,11 @@ const Logo = styled.Image`
   width: 40px;
   height: 30px;
 `
-export default function MainButton({ onPress}) {
+export default function MainButton({ onPress }) {
   return (
     <TouchableHighlight onPress={onPress}>
       <Button>
-        <Logo source={require('../assets/MLogo.png')} />
+        <Logo source={appLogo} />
       </Button>
     </TouchableHighlight>
   )

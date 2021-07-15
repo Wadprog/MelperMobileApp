@@ -14,7 +14,7 @@ const api = (store) => (next) => async (action) => {
       baseURL: env.BASE_URL,
       ...action.payload,
     })
-    console.log({ response })
+    console.log({ data: response.data })
     store.dispatch({
       type: actions.apiCallSucceeded.type,
       payload: response.data,

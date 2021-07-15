@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 
-import storeDetails from './storeDetails'
 import authentication from './auth'
+import store from './store'
+import market from './markets'
 export default combineReducers({
   authentication,
-  transactions: storeDetails,
+  market,
+  store,
 })

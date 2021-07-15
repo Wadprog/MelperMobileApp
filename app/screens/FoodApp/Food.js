@@ -67,7 +67,7 @@ const Food = ({ item, onPress }) => {
         <MaterialCommunityIcons name="star" size={20} color={colors.primary} />
         <Text>{item.rating}</Text>
         <CategoriesContainer>
-          {item.categories.map((categoryId) => (
+          {item.categories.split(',').map((categoryId) => (
             <Row key={categoryId}>
               <Text>{getCategoryNameById(categoryId)}</Text>
               <Text> . </Text>

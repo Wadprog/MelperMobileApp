@@ -22,7 +22,7 @@ const BottomTabNavigator = () => {
         name={routes.MARKET}
         component={MarketNavigator}
         options={{
-          headerTitle: () => <Text>Hell</Text>,
+          headerTitle: "() => <Text>Hell</Text>",
           headerRight: () => (
             <MaterialCommunityIcons size={34} name="home" color="red" />
           ),

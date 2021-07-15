@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
-
+// Dependencies
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
-
 import { StyleSheet, View } from 'react-native'
 import Icon from '@expo/vector-icons/MaterialCommunityIcons'
 import {
@@ -9,22 +9,23 @@ import {
   Avatar,
   Title,
   Caption,
-  Paragraph,
   Drawer,
   Text,
   TouchableRipple,
   Switch,
 } from 'react-native-paper'
+
 // Customs imports
-import AuthContext from '../auth/context'
-import { Logout } from '../api/auth'
 import Screen from '../components/Screen'
+import { getCurrentUser, logout } from '../store/auth'
 
-//Main Function to Return
-function DrawerContent(props) {
-  const auth = useContext(AuthContext)
-
+// Main Function to Return
+const DrawerContent = (props) => {
+  //Hooks
+  const auth = useSelector(getCurrentUser)
+  const dispatch = useDispatch()
   const paperTheme = useTheme()
+  // Main Object
   return (
     <Screen>
       <View style={{ flex: 1 }}>
@@ -44,7 +45,8 @@ function DrawerContent(props) {
                 </View>
               </View>
 
-              {/* <View style={styles.row}>
+              {/*
+               <View style={styles.row}>
                 <View style={styles.section}>
                   <Paragraph style={[styles.paragraph, styles.caption]}>
                     80
@@ -64,8 +66,9 @@ function DrawerContent(props) {
                   </Paragraph>
                   <Caption style={styles.caption}>Orders</Caption>
                 </View>
-              </View>*/}
-            </View> 
+              </View>
+                  */}
+            </View>
 
             <Drawer.Section style={styles.drawerSection}>
               <DrawerItem
@@ -139,7 +142,7 @@ function DrawerContent(props) {
             )}
             label="Support"
             onPress={() => {
-              signOut()
+              console.log('Calling suporrt ...')
             }}
           />
           <DrawerItem
@@ -148,7 +151,7 @@ function DrawerContent(props) {
             )}
             label="Sign Out"
             onPress={() => {
-              auth.setUser(null)
+              dispatch(logout())
             }}
           />
         </Drawer.Section>
@@ -157,6 +160,7 @@ function DrawerContent(props) {
   )
 }
 
+// Styles
 const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
