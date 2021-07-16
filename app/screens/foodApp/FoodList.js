@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react'
+import { View, StyleSheet, FlatList } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { View, StyleSheet, FlatList, Text } from 'react-native'
-
 import colors from '../../config/colors'
-import FoodCategoryItem from './FoodCategoryItem'
-import Food from './Food'
+import FoodCategoryItem from '../../components/foodApp/FoodCategory'
+import Food from '../../components/foodApp/FoodListItem'
 import Screen from '../../components/Screen'
 import categoryData from '../../Seed/FoodCat'
-import restaurantData from '../../Seed/resData'
 
 import { getCurrentStore, getStoreData } from '../../store/store'
 
-function Home(props) {
+function Home({ route, navigation }) {
   // Hooks
   const dispatch = useDispatch()
   const foods = useSelector(getCurrentStore('food'))
@@ -20,14 +18,13 @@ function Home(props) {
     dispatch(getStoreData('food'))
   }, [])
 
-  console.log({ foodsReceibed: foods })
+
   const [categories, setCategories] = React.useState(categoryData)
-  const [restaurants, setRestaurants] = React.useState(restaurantData)
+  
 
   return (
     <Screen style={styles.container}>
       {/* Main categories   */}
-
       <FoodCategoryItem item={{ ...categories[0] }} />
 
       <View style={{ padding: 20 }}>
@@ -43,7 +40,12 @@ function Home(props) {
         <FlatList
           data={foods}
           keyExtractor={(item) => `${item.id}`}
-          renderItem={({ item }) => <Food item={item} />}
+          renderItem={({ item }) => (
+            <Food
+              item={item}
+              onPress={() => navigation.navigate('ScreenG', { item })}
+            />
+          )}
           contentContainerStyle={{
             paddingHorizontal: 20,
             paddingBottom: 30,

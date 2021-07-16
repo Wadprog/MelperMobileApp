@@ -1,20 +1,22 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Image, StyleSheet } from 'react-native'
 
 //Custom dependencies
-import { SIZES, COLORS, FONTS } from '../../constants'
+import Text from '../AppText'
+import colors from '../../config/colors'
+import size from '../../config/size'
 
 function FoodCategoryItem({ isSelected = false, item, onPress }) {
   return (
     <TouchableOpacity
       style={{
-        padding: SIZES.padding,
-        paddingBottom: SIZES.padding * 2,
-        backgroundColor: isSelected ? COLORS.primary : COLORS.white,
-        borderRadius: SIZES.radius,
+        padding: size.padding,
+        paddingBottom: size.padding * 2,
+        backgroundColor: isSelected ? colors.primary : colors.white,
+        borderRadius: size.radius,
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: SIZES.padding,
+        marginRight: size.padding,
         ...styles.shadow,
       }}
       onPress={onPress}
@@ -26,7 +28,7 @@ function FoodCategoryItem({ isSelected = false, item, onPress }) {
           borderRadius: 25,
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: isSelected ? COLORS.white : COLORS.lightGray,
+          backgroundColor: isSelected ? colors.white : colors.lightGray,
         }}
       >
         <Image
@@ -41,9 +43,10 @@ function FoodCategoryItem({ isSelected = false, item, onPress }) {
 
       <Text
         style={{
-          marginTop: SIZES.padding,
-          color: isSelected ? COLORS.white : COLORS.black,
-          ...FONTS.body5,
+          marginTop: size.padding,
+          color: isSelected ? colors.white : colors.black,
+          lineHeight: 22,
+          fontSize: size.body5,
         }}
       >
         {item.name}
@@ -55,7 +58,7 @@ function FoodCategoryItem({ isSelected = false, item, onPress }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.lightGray4,
+    backgroundColor: colors.lightGray4,
   },
   shadow: {
     shadowColor: '#000',

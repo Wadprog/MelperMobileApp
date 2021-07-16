@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 
 //Custom dependencies
 import colors from '../../config/colors'
-import Text from '../../components/AppText'
+import Text from '../AppText'
 // Components
 const Container = styled.TouchableOpacity`
   margin-bottom: 20px;
@@ -16,7 +16,7 @@ const ImageContainer = styled.View`
   margin-bottom: 10px;
 `
 const Photo = styled.Image`
-  width: '100%';
+  width: 100%;
   height: 200px;
   border-radius: 30px;
 `
@@ -40,7 +40,7 @@ const Time = styled(Text)`
   font-weight: bold;
 `
 const DetailsContainer = styled.View`
-  margin-top: 10;
+  margin-top: 10px;
   flex-direction: row;
 `
 
@@ -57,7 +57,7 @@ const Food = ({ item, onPress }) => {
   return (
     <Container onPress={onPress}>
       <ImageContainer>
-        <Photo source={item.photo} resizeMode="cover" />
+        <Photo source={{ uri: item.photo }} resizeMode="cover" />
         <TimeContainer>
           <Time>{item.duration}</Time>
         </TimeContainer>
