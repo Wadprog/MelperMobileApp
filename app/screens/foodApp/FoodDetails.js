@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react'
 import { View, Animated } from 'react-native'
-
 import size from '../../config/size'
 import colors from '../../config/colors'
 import Dots from '../../components/Dots'
 import Screen from '../../components/Screen'
 import OrderDetails from '../../components/OrderDetails'
 import FoodInfo from '../../components/foodApp/FoodInfo'
-import restaurantData from '../../Seed/resData'
+
 
 const FoodDetails = ({ route, navigation }) => {
+
   const [restaurant, setRestaurant] = React.useState(null)
 
   useEffect(() => {
-    let item = restaurantData[route.params.item.id]
-    setRestaurant(item)
-  })
+    setRestaurant(route.params.item)
+  }, [])
   return (
     <Screen style={{ backgroundColor: colors.lightGray2 }}>
       <Animated.ScrollView

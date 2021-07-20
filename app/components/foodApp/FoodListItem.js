@@ -1,7 +1,7 @@
 import React from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import styled from 'styled-components/native'
-
+import env from '../../config/index'
 //Custom dependencies
 import colors from '../../config/colors'
 import Text from '../AppText'
@@ -54,10 +54,12 @@ const Food = ({ item, onPress }) => {
   const getCategoryNameById = (id) => {
     return 'Food'
   }
+  const uri = env.BASE_URL + item.photo
+  console.log({ uri, env })
   return (
     <Container onPress={onPress}>
       <ImageContainer>
-        <Photo source={{ uri: item.photo }} resizeMode="cover" />
+        <Photo source={{ uri }} resizeMode="cover" />
         <TimeContainer>
           <Time>{item.duration}</Time>
         </TimeContainer>
@@ -67,7 +69,7 @@ const Food = ({ item, onPress }) => {
         <MaterialCommunityIcons name="star" size={20} color={colors.primary} />
         <Text>{item.rating}</Text>
         <CategoriesContainer>
-          {item.categories.split(',').map((categoryId) => (
+          {item.categories.map((categoryId) => (
             <Row key={categoryId}>
               <Text>{getCategoryNameById(categoryId)}</Text>
               <Text> . </Text>

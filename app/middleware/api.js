@@ -1,7 +1,7 @@
 import axios from 'axios'
-
 import * as actions from '../store/api'
 import env from '../config'
+
 const api = (store) => (next) => async (action) => {
   if (action.type !== actions.apiCallBegan.type) return next(action)
   const { onSuccess, onError, onStart } = action.payload
@@ -27,4 +27,8 @@ const api = (store) => (next) => async (action) => {
   }
 }
 
+const Head = (headerKey, headerVal) =>
+  (axios.defaults.headers.common[headerKey] = headerVal)
+
 export default api
+export const setHeader = Head

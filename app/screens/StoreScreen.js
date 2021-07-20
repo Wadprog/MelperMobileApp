@@ -9,11 +9,12 @@ import Text from '../components/AppText'
 
 import ListingItem from '../components/Lst'
 import FilterContainer from '../components/FilterContainer'
-import Clothing from '../Seed/ClothingStore'
+//import Clothing from '../Seed/ClothingStore'
 import Colors from '../config/colors'
 
 import get from '../api/test'
 
+const Clothing = []
 const sorts = [
   { value: 't', label: 'date' },
   { value: 'p', label: 'price' },

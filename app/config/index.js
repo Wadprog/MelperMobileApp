@@ -1,6 +1,16 @@
 import Constants from 'expo-constants'
 const environment = {
   development: {
+    BASE_URL: 'http://localhost:4000/',
+    endpoints: {
+      REGISTER: '/register',
+      LOG_IN: '/auth',
+      MARKET: '/market',
+      STORE: '/store/',
+      EXPECTED_HEADER: 'x-auth-token',
+    },
+  },
+  staging: {
     BASE_URL:
       'https://script.google.com/macros/s/AKfycbyYu5WBkf7_B-cFYwSqOZVLfJfWVsz8Esv39a-gdKWKDrc5o4hUARdmFRT2S1S1_glERQ',
     endpoints: {
@@ -10,7 +20,6 @@ const environment = {
       STORE: '/exec?action=readStore&sheet=',
     },
   },
-  staging: {},
   production: {},
 }
 const getEnvironment = () => {

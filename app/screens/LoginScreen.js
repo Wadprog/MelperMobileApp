@@ -23,19 +23,16 @@ import { getCurrentUser, Login } from '../store/auth'
 // Form Validation
 const ValidationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
-  password: Yup.string().required().min(4).label('Pin'),
+  pin: Yup.string().required().min(4).label('Pin'),
 })
 
 // Main Function
 const LoginScreen = () => {
-
-
   // Hooks
   const dispatch = useDispatch()
   const user = useSelector(getCurrentUser)
 
-  const handleLogin = ({ email, password }) =>
-    dispatch(Login({ email, password }))
+  const handleLogin = ({ email, pin }) => dispatch(Login({ email, pin }))
 
   return (
     <Screen>
@@ -62,7 +59,7 @@ const LoginScreen = () => {
           >
             <Form
               validationSchema={ValidationSchema}
-              initialValues={{ email: '', password: '' }}
+              initialValues={{ email: '', pin: '' }}
               onSubmit={handleLogin}
             >
               <Error error={user.error} visible={user.error} />
@@ -86,7 +83,7 @@ const LoginScreen = () => {
                 textContentType="Password"
                 placeholder="Pin"
                 secureTextEntry
-                name="password"
+                name="pin"
               />
               <TouchableOpacity>
                 <Text style={{ color: '#009387', marginTop: 15 }}>

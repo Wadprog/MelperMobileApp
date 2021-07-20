@@ -4,6 +4,7 @@ import styled from 'styled-components/native'
 import size from '../../config/size'
 import IncrementDecrement from '../IncrementDecrement'
 import Text from '../AppText'
+import env from '../../config'
 const Image = styled.Image`
   width: ${size.width}px;
   height: 100%;
@@ -41,10 +42,12 @@ const FoodInfo = ({ food, onIncrement, onDecrement, amountOrdered = 0 }) => {
   const [val, setVal] = useState(amountOrdered)
   const handleMore = () => setVal(val + 1)
   const handleLess = () => (val > 0 ? setVal(val - 1) : setVal(0))
+  const uri = env.BASE_URL + food.photo
+  console.log({ uri })
   return (
     <Container>
       <Header>
-        <Image source={food.photo} />
+        <Image source={{ uri }} />
         <AmountModifierContainer>
           <IncrementDecrement
             onIncrement={handleMore}

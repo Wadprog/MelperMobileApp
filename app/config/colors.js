@@ -20,6 +20,7 @@ export default {
   darkgray: '#898C95',
 
   backgroundColor: '#F8F4F4',
+  blue: '#42B0FF',
 
   //light: '#f8f8',
 
@@ -27,4 +28,5 @@ export default {
   danger: 'red',
   gold: 'yellow',
   paleBlue: '#D5F3FE',
+  transparentLightGray:"#CCD4D5D6"
 }

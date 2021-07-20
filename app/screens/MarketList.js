@@ -21,7 +21,7 @@ const MarketList = ({ navigation }) => {
       <ActivityIndicator animating={markets.loading} />
       <FlatList
         data={markets.list}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item._id.toString()}
         renderItem={({ item }) => (
           <CategoryItem
             {...item}
@@ -51,7 +51,7 @@ const Separator = () => (
   />
 )
 
-// Styles 
+// Styles
 const styles = StyleSheet.create({
   screen: { backgroundColor: colors.lightGray },
 

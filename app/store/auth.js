@@ -3,7 +3,10 @@ import jwtDecode from 'jwt-decode'
 import env from '../config'
 import * as action from './api'
 import moment from 'moment'
+
+import { setHeader } from '../middleware/api'
 const url = env.endpoints.LOG_IN
+const { EXPECTED_HEADER } = env
 const initialState = {
   loading: false,
   user: null,
@@ -20,14 +23,16 @@ export const Auth = createSlice({
       state.loading = true
     },
     loginSucceed: (state, action) => {
+     
       state.loading = false
-      //@todo change bfore deplying
-      state.token = action.payload.msg
-      state.user = jwtDecode(action.payload.msg)
+      state.token = action.payload.token
+      setHeader(EXPECTED_HEADER, action.payload.token)
+      state.user = jwtDecode(action.payload.token)
       state.lastFetch = Date.now
     },
 
     LoginFailed: (state, action) => {
+      console.log(action.payload)
       state.loading = false
       state.token = null
       state.user = null

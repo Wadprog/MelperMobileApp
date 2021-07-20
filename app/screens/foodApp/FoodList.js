@@ -6,8 +6,8 @@ import colors from '../../config/colors'
 import FoodCategoryItem from '../../components/foodApp/FoodCategory'
 import Food from '../../components/foodApp/FoodListItem'
 import Screen from '../../components/Screen'
-import categoryData from '../../Seed/FoodCat'
-
+//import categoryData from '../../Seed/FoodCat'
+const categoryData = []
 import { getCurrentStore, getStoreData } from '../../store/store'
 
 function Home({ route, navigation }) {
@@ -15,12 +15,12 @@ function Home({ route, navigation }) {
   const dispatch = useDispatch()
   const foods = useSelector(getCurrentStore('food'))
   useEffect(() => {
+    console.clear()
+    console.log('Well arrived in strore food')
     dispatch(getStoreData('food'))
   }, [])
 
-
   const [categories, setCategories] = React.useState(categoryData)
-  
 
   return (
     <Screen style={styles.container}>

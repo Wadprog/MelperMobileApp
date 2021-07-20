@@ -38,6 +38,7 @@ export const getStoreData = (storeName) => (dispatch, getState) => {
   //     if (diff < env.requestRateInMinutes && user !== null) return
   //   }
 
+  console.log({ url: url + storeName })
   dispatch(
     action.apiCallBegan({
       url: url + storeName,
@@ -50,7 +51,7 @@ export const getStoreData = (storeName) => (dispatch, getState) => {
 }
 
 export const getCurrentStore = (name) => (state) => {
-  console.log({ nameReceived: name , state})
+  console.log({ nameReceived: name, state: state.store.list[name] })
   return state.store.list[name]
 }
 
