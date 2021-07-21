@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import Market from '../screens/MarketList'
+import Cart from '../screens/Cart'
 import StoreScreen from '../screens/StoreScreen'
 import StoreItemDetailsScreen from '../screens/StoreItemDetailsScreen'
 
@@ -44,6 +45,7 @@ const ProductNavigator = () => (
     <Stack.Screen name="Item" component={StoreItemDetailsScreen} />
     <Stack.Screen name="FoodStore" component={FoodApp} />
     <Stack.Screen name="SecondHand" component={SecondHand} />
+    <Stack.Screen name="cart" component={Cart} />
   </Stack.Navigator>
 )
 

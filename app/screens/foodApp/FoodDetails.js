@@ -6,15 +6,15 @@ import Dots from '../../components/Dots'
 import Screen from '../../components/Screen'
 import OrderDetails from '../../components/OrderDetails'
 import FoodInfo from '../../components/foodApp/FoodInfo'
-
-
+import { useSelector, useDispatch } from 'react-redux'
+import { addProduct, removeProduct } from '../../store/cart'
 const FoodDetails = ({ route, navigation }) => {
-
   const [restaurant, setRestaurant] = React.useState(null)
 
   useEffect(() => {
     setRestaurant(route.params.item)
   }, [])
+  const dispatch = useDispatch()
   return (
     <Screen style={{ backgroundColor: colors.lightGray2 }}>
       <Animated.ScrollView
@@ -25,7 +25,16 @@ const FoodDetails = ({ route, navigation }) => {
         showsHorizontalScrollIndicator={false}
       >
         {restaurant?.menu.map((item, index) => (
-          <FoodInfo food={item} key={`menu-${index}`} />
+          <FoodInfo
+            food={item}
+            key={`menu-${index}`}
+            onIncrement={() => {
+              dispatch({ type: addProduct, payload: item })
+            }}
+            onDecrement={() => {
+              dispatch({ type: removeProduct, payload: item })
+            }}
+          />
         ))}
       </Animated.ScrollView>
       {/* Dots  */}
