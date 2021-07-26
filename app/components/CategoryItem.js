@@ -1,54 +1,56 @@
 import React from 'react'
-import { StyleSheet, View, TouchableHighlight, Image } from 'react-native'
+import styled from 'styled-components/native'
+import { TouchableHighlight } from 'react-native'
 
-import { FontAwesome } from '@expo/vector-icons'
-import AppText from './AppText'
+// Custom dependencies
 import colors from '../config/colors'
+import { FontAwesome } from '@expo/vector-icons'
+import Text from './AppText'
 
-
+const Container = styled.View`
+  margin-horizontal: 5px;
+  width: 90px;
+  overflow: hidden;
+  align-self: center;
+`
+const Name = styled(Text)`
+  margin-top: 3px;
+  font-size:15px
+  text-align: center;
+`
+const Icon = styled(FontAwesome)`
+  text-align: center;
+`
+const IconContainer = styled.View`
+  background-color: ${colors.white};
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+`
+const Image = styled.Image`
+  width: 70px;
+  height: 70px;
+`
 function CategoryItem({ icon, photo, name, color, onPress }) {
   return (
     <TouchableHighlight onPress={onPress} underlayColor={colors.light}>
-      <View style={styles.container}>
+      <Container>
         {
-          <View style={styles.iconContainer}>
+          <IconContainer>
             {photo ? (
-              <Image style={styles.image} source={photo} />
+              <Image source={photo} />
             ) : (
-              <FontAwesome name={icon} size={34} color={color} />
+              <Icon name={icon} size={34} color={color} />
             )}
-          </View>
+          </IconContainer>
         }
-        <AppText style={styles.text}>{name}</AppText>
-      </View>
+        <Name>{name}</Name>
+      </Container>
     </TouchableHighlight>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 5,
-    width: 90,
-    overflow: 'hidden',
-  },
-  text: {
-    textAlign: 'center',
-    marginTop: 3,
-  },
-
-  iconContainer: {
-    backgroundColor: colors.white,
-    width: 60,
-    height: 60,
-    borderRadius: 999,
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    width: 70,
-    height: 70,
-  },
-  categoryWrapper: {},
-})
 export default CategoryItem

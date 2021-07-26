@@ -6,8 +6,10 @@ import Dots from '../../components/Dots'
 import Screen from '../../components/Screen'
 import OrderDetails from '../../components/OrderDetails'
 import FoodInfo from '../../components/foodApp/FoodInfo'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addProduct, removeProduct } from '../../store/cart'
+
+
 const FoodDetails = ({ route, navigation }) => {
   const [restaurant, setRestaurant] = React.useState(null)
 
@@ -16,7 +18,7 @@ const FoodDetails = ({ route, navigation }) => {
   }, [])
   const dispatch = useDispatch()
   return (
-    <Screen style={{ backgroundColor: colors.lightGray2 }}>
+    <Screen>
       <Animated.ScrollView
         horizontal
         pagingEnabled

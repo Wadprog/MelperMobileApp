@@ -1,58 +1,13 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native'
-import { COLORS, SIZES, icons, FONTS } from '../../constants'
+import { View, Text, ImageBackground } from 'react-native'
+import { COLORS, SIZES, FONTS } from '../../constants'
 import sizes from '../../config/size'
 import colors from '../../config/colors'
 import env from '../../config'
-const ItemDetail = ({ route, navigation }) => {
+
+import Orderer from '../../components/OrderDetails'
+const ItemDetail = ({ route, navigation, OnIncrement, onDecrement }) => {
   // Render
-
-  function renderHeader() {
-    return (
-      <View
-        style={{
-          marginTop: SIZES.padding * 2,
-          marginHorizontal: SIZES.padding,
-        }}
-      >
-        <View style={{ flexDirection: 'row' }}>
-          <View style={{ flex: 1, alignItems: 'flex-start' }}>
-            <TouchableOpacity onPress={() => console.log('Menu on clicked')}>
-              <Image
-                source={icons.menu}
-                resizeMode="contain"
-                style={{
-                  tintColor: colors.white,
-                  width: 25,
-                  height: 25,
-                }}
-              />
-            </TouchableOpacity>
-          </View>
-
-          <View style={{ flex: 1, alignItems: 'flex-end' }}>
-            <TouchableOpacity onPress={() => console.log('Search on clicked')}>
-              <Image
-                source={icons.search}
-                resizeMode="contain"
-                style={{
-                  tintColor: colors.white,
-                  width: 25,
-                  height: 25,
-                }}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    )
-  }
 
   function renderInfo() {
     let { itemInfo } = route.params
@@ -65,8 +20,6 @@ const ItemDetail = ({ route, navigation }) => {
           resizeMode="cover"
           style={{ width: '100%', height: '100%' }}
         >
-          {renderHeader()}
-
           {/* Product Tag */}
           <View
             style={{
@@ -156,82 +109,11 @@ const ItemDetail = ({ route, navigation }) => {
     }
   }
 
-  function renderFooter() {
-    return (
-      <View
-        style={{
-          position: 'absolute',
-          bottom: '5%',
-          left: SIZES.padding,
-          right: SIZES.padding,
-          flexDirection: 'row',
-          height: 70,
-          backgroundColor: COLORS.white,
-          borderRadius: 35,
-        }}
-      >
-        <View
-          style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}
-        >
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image
-              source={icons.dashboard}
-              style={{
-                tintColor: COLORS.gray,
-                width: 25,
-                height: 25,
-              }}
-            />
-          </TouchableOpacity>
-        </View>
-
-        <View
-          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-        >
-          <TouchableOpacity
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: 50,
-              width: 50,
-              borderRadius: 10,
-              backgroundColor: COLORS.primary,
-            }}
-            onPress={() => console.log('Add on clicked')}
-          >
-            <Image
-              source={icons.plus}
-              style={{
-                tintColor: COLORS.white,
-                height: 20,
-                width: 20,
-              }}
-            />
-          </TouchableOpacity>
-        </View>
-
-        <View
-          style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}
-        >
-          <TouchableOpacity onPress={() => console.log('Profile on clicked')}>
-            <Image
-              source={icons.user}
-              style={{
-                tintColor: COLORS.gray,
-                width: 25,
-                height: 25,
-              }}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
-    )
-  }
-
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
       {renderInfo()}
-      {renderFooter()}
+
+      <Orderer styleSize="small" />
     </View>
   )
 }

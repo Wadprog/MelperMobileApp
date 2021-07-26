@@ -27,7 +27,7 @@ const DrawerContent = (props) => {
   const paperTheme = useTheme()
   // Main Object
   return (
-    <Screen>
+    <View>
       <View style={{ flex: 1 }}>
         <DrawerContentScrollView {...props}>
           <View style={styles.drawerContent}>
@@ -156,7 +156,7 @@ const DrawerContent = (props) => {
           />
         </Drawer.Section>
       </View>
-    </Screen>
+    </View>
   )
 }
 

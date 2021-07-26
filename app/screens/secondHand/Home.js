@@ -85,7 +85,9 @@ const Home = ({ navigation }) => {
         </View>
       </View>
 
-      <View style={{ height: '19%', justifyContent: 'flex-end' }}>
+      <View
+        style={{ height: '19%', justifyContent: 'flex-end', paddingBottom: 5 }}
+      >
         <PromotionCard />
       </View>
     </Screen>

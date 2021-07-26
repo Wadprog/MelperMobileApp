@@ -1,7 +1,14 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProducts } from '../store/cart'
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import Screen from '../components/Screen'
 import styled from 'styled-components/native'
@@ -11,7 +18,6 @@ import env from '../config'
 import { images, FONTS } from '../constants'
 const EXPECTED_HEADER = env.EXPECTED_HEADER
 const Container = styled.View`
-
   margin-vertical: ${sizes.padding3}px;
   padding: ${sizes.radius}px;
   height: 110px;
@@ -26,6 +32,11 @@ function Cart(props) {
   return (
     <Screen>
       <Container>
+        <FlatList
+          data={orders}
+          renderItem={({ item }) => <ListItem item={item} />}
+          keyExtractor={(item) => `${item.id}`}
+        />
         {orders.map((order) => (
           <LIstItem item={order} />
         ))}

@@ -23,7 +23,6 @@ export const Auth = createSlice({
       state.loading = true
     },
     loginSucceed: (state, action) => {
-     
       state.loading = false
       state.token = action.payload.token
       setHeader(EXPECTED_HEADER, action.payload.token)
@@ -32,11 +31,10 @@ export const Auth = createSlice({
     },
 
     LoginFailed: (state, action) => {
-      console.log(action.payload)
+      console.log({loginFailed :action.payload})
       state.loading = false
       state.token = null
-      state.user = null
-      state.error = action.payload.msg
+      state.error = action.payload
     },
     LogOut: (state) => {
       state.loading = false

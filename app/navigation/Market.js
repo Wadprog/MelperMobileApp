@@ -9,6 +9,7 @@ import StoreItemDetailsScreen from '../screens/StoreItemDetailsScreen'
 
 import FoodApp from './FoodApp'
 import SecondHand from './SecondHand'
+import Clothes from './ClothesApp'
 const Stack = createStackNavigator()
 
 const ProductNavigator = () => (
@@ -45,6 +46,7 @@ const ProductNavigator = () => (
     <Stack.Screen name="Item" component={StoreItemDetailsScreen} />
     <Stack.Screen name="FoodStore" component={FoodApp} />
     <Stack.Screen name="SecondHand" component={SecondHand} />
+    <Stack.Screen name="Clothes" component={Clothes} />
     <Stack.Screen name="cart" component={Cart} />
   </Stack.Navigator>
 )

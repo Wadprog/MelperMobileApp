@@ -1,18 +1,11 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  ActivityIndicator,
-  Image,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native'
+import { Image, View, StyleSheet } from 'react-native'
 // Views
 import * as Animatable from 'react-native-animatable'
 import * as Yup from 'yup'
 
 //Custom dependencies
-//import ActivityIndicator from '../components/ActivityIndicator'
 import Screen from '../components/Screen'
 import { Error, Field, Form, Submit } from '../components/form'
 
@@ -35,66 +28,45 @@ const LoginScreen = () => {
   const handleLogin = ({ email, pin }) => dispatch(Login({ email, pin }))
 
   return (
-    <Screen>
-      {user.loading ? (
-        <View
-          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+    <Screen style={styles.container} loading={user.loading} error={user.error}>
+      <Image style={styles.logo} source={appLogo} />
+      <View style={styles.header}>
+        <Text style={styles.text_header}>Welcome!</Text>
+      </View>
+      <Animatable.View animation="fadeInUpBig" style={styles.footer}>
+        <Form
+          validationSchema={ValidationSchema}
+          initialValues={{ email: '', pin: '' }}
+          onSubmit={handleLogin}
         >
-          <ActivityIndicator animating={true} size="large" />
-        </View>
-      ) : (
-        <View style={styles.container}>
-          <Image style={styles.logo} source={appLogo} />
-          <View style={styles.header}>
-            <Text style={styles.text_header}>Welcome!</Text>
-          </View>
-          <Animatable.View
-            animation="fadeInUpBig"
-            style={[
-              styles.footer,
-              {
-                backgroundColor: colors.white,
-              },
-            ]}
-          >
-            <Form
-              validationSchema={ValidationSchema}
-              initialValues={{ email: '', pin: '' }}
-              onSubmit={handleLogin}
-            >
-              <Error error={user.error} visible={user.error} />
-              <Field
-                autoCapitalize="none"
-                autoCorrect={false}
-                editable={!user.loading}
-                icon="email"
-                keyboardType="email-address"
-                textContentType="emailAddress"
-                placeholder="Email"
-                name="email"
-              />
+          <Field
+            autoCapitalize="none"
+            autoCorrect={false}
+            editable={!user.loading}
+            icon="email"
+            keyboardType="email-address"
+            textContentType="emailAddress"
+            placeholder="Email"
+            name="email"
+          />
 
-              <Field
-                autoCapitalize="none"
-                autoCorrect={false}
-                editable={!user.loading}
-                icon="key"
-                keyboardType="password"
-                textContentType="Password"
-                placeholder="Pin"
-                secureTextEntry
-                name="pin"
-              />
-              <TouchableOpacity>
-                <Text style={{ color: '#009387', marginTop: 15 }}>
-                  Forgot password?
-                </Text>
-              </TouchableOpacity>
-              <Submit title="Login" />
-            </Form>
-          </Animatable.View>
-        </View>
-      )}
+          <Field
+            autoCapitalize="none"
+            autoCorrect={false}
+            editable={!user.loading}
+            icon="key"
+            keyboardType="password"
+            textContentType="Password"
+            placeholder="Pin"
+            secureTextEntry
+            name="pin"
+          />
+
+          <View style={styles.foot}>
+            <Submit title="Login" />
+          </View>
+        </Form>
+      </Animatable.View>
     </Screen>
   )
 }
@@ -103,22 +75,22 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.light,
+    backgroundColor: 'red',
   },
   header: {
-    flex: 1,
     justifyContent: 'flex-end',
     paddingHorizontal: 20,
     paddingBottom: 50,
   },
 
   footer: {
-    flex: 3,
-    backgroundColor: '#fff',
+    position: 'relative',
+    backgroundColor: colors.lightGray3,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
+    height: '100%',
   },
 
   text_header: {
@@ -133,6 +105,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 90,
     marginBottom: 20,
+  },
+  foot: {
+    // position: 'absolute',
+    // bottom: 13,
+    // left: '50%',
+    // height: '75%',
+    // width: '100%',
+    // backgroundColor: 'green',
   },
 })
 
