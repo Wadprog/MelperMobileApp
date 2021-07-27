@@ -54,7 +54,7 @@ const DrawerContent = (props) => {
                   <Caption
                     style={styles.caption}
                     onPress={() => {
-                      console.log('under=contruction')
+                 
                     }}
                   >
                     Family Members
@@ -121,9 +121,7 @@ const DrawerContent = (props) => {
             </Drawer.Section>
             <Drawer.Section title="Preferences">
               <TouchableRipple
-                onPress={() => {
-                  console.log('undercontruction')
-                }}
+           
               >
                 <View style={styles.preference}>
                   <Text>Dark Theme</Text>
@@ -141,9 +139,7 @@ const DrawerContent = (props) => {
               <Icon name="phone" color={color} size={size} />
             )}
             label="Support"
-            onPress={() => {
-              console.log('Calling suporrt ...')
-            }}
+          
           />
           <DrawerItem
             icon={({ color, size }) => (

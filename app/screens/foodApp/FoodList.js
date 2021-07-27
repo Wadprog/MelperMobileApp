@@ -14,11 +14,7 @@ function Home({ route, navigation }) {
   // Hooks
   const dispatch = useDispatch()
   const foods = useSelector(getCurrentStore('food'))
-  useEffect(() => {
-    console.clear()
-    console.log('Well arrived in strore food')
-    dispatch(getStoreData('food'))
-  }, [])
+  useEffect(() => dispatch(getStoreData('food')), [])
 
   const [categories, setCategories] = React.useState(categoryData)
 

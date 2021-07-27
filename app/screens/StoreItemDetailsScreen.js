@@ -74,7 +74,6 @@ function StoreItemDetailsScreen({ route }) {
             activeColor={colors.white}
             IdleColor={colors.primary}
             iconColor={colors.white}
-            onPress={() => console.log('Amwey')}
           />
         </Head>
         <Main>

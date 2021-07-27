@@ -10,7 +10,6 @@ const Cart = createSlice({
       orders.orders.push(action.payload)
     },
     productRemoved: (state, action) => {
-      console.log('deiskjodslfjhdsaljh')
       state.orders = state.orders.map((order) => {
         if (order != action.payload) return order
       })

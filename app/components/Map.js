@@ -4,6 +4,7 @@ import colors from '../config/colors'
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import styled from 'styled-components/native'
+
 const Bottom = styled.View`
   background-color: ${colors.lightGray3};
   height: 200px;
@@ -17,7 +18,6 @@ const CurrentLocation = styled.View`
   justify-content: center;
   align-items: center;
 `
-
 const NotchBar = styled.View`
   width: 150px;
   height: 5px;
@@ -31,8 +31,9 @@ function Map(props) {
     longitude: -16.263045,
   }
   return (
-    <View style={{ flex: 1 }}>
-      <MapView
+    <>
+      <Text> Mapp guy</Text>
+      {/* <MapView
         coordinate={toLocation}
         style={{ width: '100%', height: '100%' }}
         provider={PROVIDER_GOOGLE}
@@ -56,8 +57,8 @@ function Map(props) {
           <NotchBar />
           <Text>You are currently on the 10th ave</Text>
         </CurrentLocation>
-      </Bottom>
-    </View>
+      </Bottom> */}
+    </>
   )
 }
 

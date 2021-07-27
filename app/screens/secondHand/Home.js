@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Text, TouchableOpacity, FlatList, View } from 'react-native'
 
 import { useSelector, useDispatch } from 'react-redux'
+
+// Custom dependencies 
 import Screen from '../../components/Screen'
 import sizes from '../../config/size'
 import colors from '../../config/colors'
 import ListItem from '../../components/seconHandApp/ListItem'
 import PromotionCard from '../../components/seconHandApp/PromotionCard'
 
-const ScrollableTab = ({ tabList, selectedTab, onPress }) => {
+const ScrollAbleTab = ({ tabList, selectedTab, onPress }) => {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{ marginHorizontal: sizes.padding3 }}
@@ -62,13 +64,14 @@ const Home = ({ navigation }) => {
   useEffect(() => {
     dispatch(getStoreData('secondHand'))
     setTabList(items)
+    if (items?.length)
     setSelectedTab(items[0])
   }, [])
 
   return (
     <Screen>
       <ItemTitle title={selectedTab.title} />
-      <ScrollableTab
+      <ScrollAbleTab
         tabList={tabList}
         selectedTab={selectedTab}
         onPress={(item) => setSelectedTab(item)}

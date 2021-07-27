@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
- 
-} from 'react-native'
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 import { images, FONTS } from '../../constants'
 import colors from '../../config/colors'
 import sizes from '../../config/size'
@@ -73,9 +66,6 @@ const PromotionCard = () => {
             height: '70%',
             width: 40,
             borderRadius: 10,
-          }}
-          onPress={() => {
-            console.log('Promo on clicked')
           }}
         >
           <MaterialCommunityIcons name="home" />

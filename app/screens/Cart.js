@@ -17,12 +17,14 @@ import sizes from '../config/size'
 import env from '../config'
 import { images, FONTS } from '../constants'
 const EXPECTED_HEADER = env.EXPECTED_HEADER
+
 const Container = styled.View`
   margin-vertical: ${sizes.padding3}px;
   padding: ${sizes.radius}px;
   height: 110px;
   border-radius: 20px;
   background-color: ${colors.white};
+  flex: 1;
 `
 
 function Cart(props) {
@@ -34,12 +36,9 @@ function Cart(props) {
       <Container>
         <FlatList
           data={orders}
-          renderItem={({ item }) => <ListItem item={item} />}
+          renderItem={({ item }) => <LIstItem item={item} />}
           keyExtractor={(item) => `${item.id}`}
         />
-        {orders.map((order) => (
-          <LIstItem item={order} />
-        ))}
       </Container>
     </Screen>
   )
@@ -48,29 +47,31 @@ function Cart(props) {
 const LIstItem = ({ item }) => {
   const uri = EXPECTED_HEADER + item.image
   return (
-    <View
-      style={[
-        styles.shadow,
-        {
-          flexDirection: 'row',
-          marginHorizontal: sizes.padding3,
-          padding: sizes.radius,
-          height: 110,
-          borderRadius: 20,
-          backgroundColor: colors.white,
-        },
-      ]}
-    >
+    
       <View
-        style={{
-          width: 50,
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: colors.lightGray2,
-          borderRadius: 20,
-        }}
+        style={[
+          styles.shadow,
+          {
+            flexDirection: 'row',
+            marginHorizontal: sizes.padding,
+            padding: sizes.radius,
+            height: 110,
+            borderRadius: 20,
+            backgroundColor: colors.white,
+            with: '100%',
+          },
+        ]}
       >
-        {/* <Image
+        <View
+          style={{
+            width: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: colors.lightGray2,
+            borderRadius: 20,
+          }}
+        >
+          {/* <Image
           source={{ uri }}
           resizeMode="contain"
           style={{
@@ -78,45 +79,46 @@ const LIstItem = ({ item }) => {
             height: '60%',
           }}
         /> */}
-      </View>
+        </View>
 
-      {/* Wordings section */}
-      <View
-        style={{
-          flex: 1,
-          marginLeft: sizes.radius,
-          justifyContent: 'center',
-        }}
-      >
-        <Text style={{ ...FONTS.h2 }}>ret tann</Text>
-        <Text style={{ ...FONTS.body3 }}>Adding to your cart</Text>
-      </View>
-
-      {/* Button */}
-      <View
-        style={{
-          marginRight: sizes.radius,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <TouchableOpacity
+        {/* Wordings section */}
+        <View
           style={{
-            backgroundColor: colors.primary,
+            flex: 1,
+            marginLeft: sizes.radius,
             justifyContent: 'center',
-            alignItems: 'center',
-            height: '70%',
-            width: 40,
-            borderRadius: 10,
-          }}
-          onPress={() => {
-            console.log('Promo on clicked')
           }}
         >
-          <MaterialCommunityIcons name="home" />
-        </TouchableOpacity>
+          <Text style={{ ...FONTS.h2 }}>Product name</Text>
+          <Text style={{ ...FONTS.body3 }}>Adding to your cart</Text>
+        </View>
+
+        {/* Button */}
+        <View
+          style={{
+            marginRight: sizes.radius,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              backgroundColor: colors.primary,
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '70%',
+              width: 40,
+              borderRadius: 10,
+            }}
+            onPress={() => {
+              console.log('Promo on clicked')
+            }}
+          >
+            <MaterialCommunityIcons name="home" />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+   
   )
 }
 

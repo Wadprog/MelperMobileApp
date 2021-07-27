@@ -32,7 +32,6 @@ const Market = createSlice({
 })
 
 export const getMarketList = () => (dispatch, getState) => {
-  console.log(getState())
   const { lastFetch } = getState().market
 
   if (lastFetch) {

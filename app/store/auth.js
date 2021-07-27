@@ -31,7 +31,7 @@ export const Auth = createSlice({
     },
 
     LoginFailed: (state, action) => {
-      console.log({loginFailed :action.payload})
+  
       state.loading = false
       state.token = null
       state.error = action.payload
@@ -48,7 +48,6 @@ export const Login = (credentials) => (dispatch, getState) => {
   const { lastFetch } = getState().authentication
   if (lastFetch) {
     const diff = moment().diff(moment(lastFetch), 'minutes')
-    console.log({ diff })
     if (diff < env.requestRateInMinutes && user !== null) return
   }
 

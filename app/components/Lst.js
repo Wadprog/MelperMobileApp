@@ -38,7 +38,6 @@ function Lst(props) {
             IdleColor={Colors.lightGray}
             iconColor={Colors.primary}
             iconName="heart"
-            onPress={() => console.log('Like Heart Icon' + props.name)}
           />
         </View>
         <View style={styles.imageWrapper}>

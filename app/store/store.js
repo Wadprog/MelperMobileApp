@@ -34,11 +34,9 @@ export const getStoreData = (storeName) => (dispatch, getState) => {
   //   const { lastFetch } = getState().authentication
   //   if (lastFetch) {
   //     const diff = moment().diff(moment(lastFetch), 'minutes')
-  //     console.log({ diff })
   //     if (diff < env.requestRateInMinutes && user !== null) return
   //   }
 
-  console.log({ url: url + storeName })
   dispatch(
     action.apiCallBegan({
       url: url + storeName,
@@ -50,10 +48,6 @@ export const getStoreData = (storeName) => (dispatch, getState) => {
   )
 }
 
-export const getCurrentStore = (name) => (state) => {
-  console.log({ nameReceived: name, state: state.store.list[name] })
-  return state.store.list[name]
-}
+export const getCurrentStore = (name) => (state) => state.store.list[name]
 
-console.log(getCurrentStore('food3'))
 export default Store.reducer

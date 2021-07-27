@@ -38,10 +38,10 @@ export const Transaction = createSlice({
 
 export const loadTransaction = () => (dispatch, getState) => {
   const { lastFetch } = getState().transactions
-  console.log({lastFetch})
+
   if (lastFetch) {
     const diff = moment().diff(moment(lastFetch), 'minutes')
-    console.log({diff})
+
     if (diff < env.requestRateInMinutes) return
   }
 
@@ -58,7 +58,6 @@ export const loadTransaction = () => (dispatch, getState) => {
 // Action creators are generated for each case reducer function
 export const { transactionReceived, removeExpense } = Transaction.actions
 export const transactionList = (state) => {
-  console.log({ state })
   state.transaction
 }
 

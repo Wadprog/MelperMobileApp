@@ -1,17 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, ImageBackground } from 'react-native'
 import { COLORS, SIZES, FONTS } from '../../constants'
 import sizes from '../../config/size'
 import colors from '../../config/colors'
 import env from '../../config'
-
+import MoreLess from '../../components/IncrementDecrement'
 import Orderer from '../../components/OrderDetails'
+import { useSelector, useDispatch } from 'react-redux'
+import { addProduct, removeProduct, getProducts } from '../../store/cart'
 const ItemDetail = ({ route, navigation, OnIncrement, onDecrement }) => {
   // Render
+  let { itemInfo } = route.params
+  const dispatch = useDispatch()
+  const orders = useSelector(getProducts)
+  const { log } = console
+  const [amountInCart, setAmountInCart] = useState(0)
+
+  const reducer = (acc, item) => {
+    if (item.productId == itemInfo.productId) {
+      return amount + 1
+    }
+    return amount + 0
+  }
 
   function renderInfo() {
-    let { itemInfo } = route.params
-
     if (itemInfo) {
       const uri = env.BASE_URL + itemInfo.image
       return (
@@ -20,6 +32,7 @@ const ItemDetail = ({ route, navigation, OnIncrement, onDecrement }) => {
           resizeMode="cover"
           style={{ width: '100%', height: '100%' }}
         >
+          <Text>in cart at the moment {amountInCart}</Text>
           {/* Product Tag */}
           <View
             style={{
@@ -78,6 +91,14 @@ const ItemDetail = ({ route, navigation, OnIncrement, onDecrement }) => {
               >
                 $ {itemInfo.price.toFixed(2)}
               </Text>
+              <View style={{ position: 'relative', marginTop: 25 }}>
+                <MoreLess
+                  onIncrement={() =>
+                    dispatch({ type: addProduct, payload: itemInfo })
+                  }
+                  onDecrement={() => log('Decrementing')}
+                />
+              </View>
             </View>
           </View>
 
@@ -108,12 +129,15 @@ const ItemDetail = ({ route, navigation, OnIncrement, onDecrement }) => {
       ;<View></View>
     }
   }
-
+  useEffect(() => {
+    setAmountInCart(orders.reduce(reducer, 0))
+  }, [])
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
+      <Text> Hello App</Text>
       {renderInfo()}
 
-      <Orderer styleSize="small" />
+      {/* <Orderer styleSize="small" /> */}
     </View>
   )
 }

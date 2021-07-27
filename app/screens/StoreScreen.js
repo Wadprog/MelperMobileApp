@@ -22,7 +22,7 @@ const sorts = [
 
 function getFilter(data) {
   return data.map((c) => {
-    console.log({ c })
+
     if (c.category) return { name: c.category, icon: 'home' }
   })
 }
@@ -40,7 +40,7 @@ function StoreScreen({ navigation, route }) {
       })
       .catch((err) => console.error('trouble baba'))
   }, [])
-  console.log({ params: route.params.item.name })
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.wrapper}>
