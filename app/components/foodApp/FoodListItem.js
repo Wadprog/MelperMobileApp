@@ -4,10 +4,11 @@ import styled from 'styled-components/native'
 import env from '../../config/index'
 //Custom dependencies
 import colors from '../../config/colors'
+import sizes from '../../config/size'
 import Text from '../AppText'
 // Components
 const Container = styled.TouchableOpacity`
-  margin-bottom: 20px;
+  margin-bottom: ${sizes.maxMargin1/2}px;
 `
 const Row = styled.View`
   flex-direction: row;
@@ -17,14 +18,14 @@ const ImageContainer = styled.View`
 `
 const Photo = styled.Image`
   width: 100%;
-  height: 200px;
-  border-radius: 30px;
+  height: ${sizes.maxMargin*2}px;
+  border-radius: ${sizes.radius}px;
 `
 const TimeContainer = styled.View`
   position: absolute;
   bottom: 0;
-  height: 50px;
-  width: 100px;
+  height: ${sizes.maxMargin / 2}px;
+  width: ${sizes.maxMargin}px;
   background-color: ${colors.white};
   border-top-right-radius: 30px;
   border-bottom-left-radius: 30px;
@@ -40,7 +41,7 @@ const Time = styled(Text)`
   font-weight: bold;
 `
 const DetailsContainer = styled.View`
-  margin-top: 10px;
+  margin-top: ${sizes.padding}px;
   flex-direction: row;
 `
 

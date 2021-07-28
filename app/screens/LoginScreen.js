@@ -1,39 +1,66 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Image, View, StyleSheet } from 'react-native'
-// Views
+import styled from 'styled-components/native'
 import * as Animatable from 'react-native-animatable'
 import * as Yup from 'yup'
 
 //Custom dependencies
 import Screen from '../components/Screen'
-import { Error, Field, Form, Submit } from '../components/form'
-
+import { Field, Form, Submit } from '../components/form'
 import Text from '../components/AppText'
 import colors from '../config/colors'
-import { appLogo } from '../config/image'
+import sizes from '../config/size'
+import image from '../config/image'
 import { getCurrentUser, Login } from '../store/auth'
+
 // Form Validation
 const ValidationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
   pin: Yup.string().required().min(4).label('Pin'),
 })
-
+// Components
+const Logo = styled.Image`
+  width: ${sizes.maxMargin1}px;
+  height: ${sizes.maxMargin1}px;
+  align-self: center;
+  margin-top: ${sizes.maxMargin}px;
+  margin-bottom: ${sizes.margin1}px;
+`
+const Head = styled.View`
+  justify-content: flex-end;
+  padding-horizontal: ${sizes.padding3}px;
+  padding-bottom: ${sizes.padding3}px;
+`
+const HeaderText = styled(Text)`
+  color: ${colors.secondary};
+  font-weight: bold;
+  font-size: ${sizes.h1}px;
+`
+const Main = styled(Animatable.View)`
+  position: relative;
+  background-color: ${colors.lightGray3};
+  border-top-left-radius: ${sizes.radius}px;
+  border-top-right-radius: ${sizes.radius}px;
+  padding-horizontal: ${sizes.padding3}px;
+  padding-vertical: ${sizes.padding3}px;
+  height: 100%;
+`
+const Foot = styled.View``
 // Main Function
 const LoginScreen = () => {
   // Hooks
   const dispatch = useDispatch()
   const user = useSelector(getCurrentUser)
-
+  // Functions
   const handleLogin = ({ email, pin }) => dispatch(Login({ email, pin }))
 
   return (
-    <Screen style={styles.container} loading={user.loading} error={user.error}>
-      <Image style={styles.logo} source={appLogo} />
-      <View style={styles.header}>
-        <Text style={styles.text_header}>Welcome!</Text>
-      </View>
-      <Animatable.View animation="fadeInUpBig" style={styles.footer}>
+    <Screen loading={user.loading} error={user.error}>
+      <Logo source={image.appLogo} />
+      <Head>
+        <HeaderText>Welcome!</HeaderText>
+      </Head>
+      <Main animation="fadeInUpBig">
         <Form
           validationSchema={ValidationSchema}
           initialValues={{ email: '', pin: '' }}
@@ -62,58 +89,13 @@ const LoginScreen = () => {
             name="pin"
           />
 
-          <View style={styles.foot}>
+          <Foot>
             <Submit title="Login" />
-          </View>
+          </Foot>
         </Form>
-      </Animatable.View>
+      </Main>
     </Screen>
   )
 }
-
-//Styles
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'red',
-  },
-  header: {
-    justifyContent: 'flex-end',
-    paddingHorizontal: 20,
-    paddingBottom: 50,
-  },
-
-  footer: {
-    position: 'relative',
-    backgroundColor: colors.lightGray3,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-    height: '100%',
-  },
-
-  text_header: {
-    color: colors.secondary,
-    fontWeight: 'bold',
-    fontSize: 30,
-  },
-
-  logo: {
-    width: 80,
-    height: 80,
-    alignSelf: 'center',
-    marginTop: 90,
-    marginBottom: 20,
-  },
-  foot: {
-    // position: 'absolute',
-    // bottom: 13,
-    // left: '50%',
-    // height: '75%',
-    // width: '100%',
-    // backgroundColor: 'green',
-  },
-})
 
 export default LoginScreen

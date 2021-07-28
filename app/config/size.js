@@ -8,6 +8,9 @@ export default {
   padding: 10,
   padding2: 12,
   padding3: 24,
+  maxMargin1: 70,
+  maxMargin: 100,
+  margin1:20,
 
   // font sizes
   largeTitle: 50,

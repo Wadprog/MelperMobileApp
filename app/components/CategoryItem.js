@@ -4,28 +4,29 @@ import { TouchableHighlight } from 'react-native'
 
 // Custom dependencies
 import colors from '../config/colors'
-import { FontAwesome } from '@expo/vector-icons'
+import sizes from '../config/size'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 import Text from './AppText'
 
 const Container = styled.View`
   margin-horizontal: 5px;
-  width: 90px;
+  width: ${sizes.maxMargin1 + sizes.margin1}px;
   overflow: hidden;
   align-self: center;
+  justify-content: center;
 `
 const Name = styled(Text)`
-  margin-top: 3px;
-  font-size:15px
+  margin-top: ${sizes.base/2}px;
+  font-size:${sizes.font}px;
   text-align: center;
+  margin-right:${sizes.margin1}px
 `
-const Icon = styled(FontAwesome)`
-  text-align: center;
-`
+
 const IconContainer = styled.View`
   background-color: ${colors.white};
-  width: 60px;
-  height: 60px;
-  border-radius: 999px;
+  width: ${sizes.maxMargin1}px;
+  height: ${sizes.maxMargin1}px;
+  border-radius: ${sizes.maxMargin}px;
   overflow: hidden;
   align-items: center;
   justify-content: center;
@@ -43,7 +44,11 @@ function CategoryItem({ icon, photo, name, color, onPress }) {
             {photo ? (
               <Image source={photo} />
             ) : (
-              <Icon name={icon} size={34} color={color} />
+              <MaterialCommunityIcons
+                name={icon}
+                size={sizes.maxMargin1/2}
+                color={color}
+              />
             )}
           </IconContainer>
         }

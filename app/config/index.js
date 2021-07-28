@@ -1,6 +1,14 @@
 import Constants from 'expo-constants'
+import image from './image'
+import size from './size'
+import colors from './colors'
+import text from './text'
 const environment = {
   development: {
+    image,
+    size,
+    colors,
+    text,
     BASE_URL: 'http://localhost:4000/',
     endpoints: {
       REGISTER: '/register',
@@ -11,6 +19,10 @@ const environment = {
     },
   },
   staging: {
+    image,
+    size,
+    colors,
+    text,
     BASE_URL:
       'https://script.google.com/macros/s/AKfycbyYu5WBkf7_B-cFYwSqOZVLfJfWVsz8Esv39a-gdKWKDrc5o4hUARdmFRT2S1S1_glERQ',
     endpoints: {

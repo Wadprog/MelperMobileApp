@@ -1,63 +1,56 @@
 import React from 'react'
-import { StyleSheet, ImageBackground, View, Image, } from 'react-native'
-import AppButton from '../components/AppButton'
+
+import styled from 'styled-components/native'
 
 // Customs imports
+import Button from '../components/AppButton'
+import Text from '../components/AppText'
+import routes from '../navigation/routes'
+import configuration from '../config'
 
-import AppText from '../components/AppText'
+// Components 
+const Background = styled.ImageBackground`
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+`
+const LogoContainer = styled.View`
+  position: absolute;
+  top: ${configuration.size.maxMargin1}px;
+  align-items: center;
+`
+const Logo = styled.Image`
+  width: ${configuration.size.maxMargin}px;
+  height: ${configuration.size.maxMargin}px;
+`
+const Tagline = styled(Text)`
+  font-size: ${configuration.size.h3}px;
+  font-weight: 600;
+  font-style: italic;
+  text-transform: capitalize;
+  padding-vertical: ${configuration.size.padding3}px;
+`
+const ButtonContainer = styled.View`
+  width: 100%;
+  padding: ${configuration.size.padding}px;
+  margin-vertical: ${configuration.size.padding}px;
+`
+// Main Function To Export
+const WelcomeScreen = ({ navigation }) => (
+  <Background blurRadius={10} source={configuration.image.WelcomeScreenBG}>
+    <LogoContainer>
+      <Logo source={configuration.image.appLogo} />
+      <Tagline> {configuration.text.appTagLine}</Tagline>
+    </LogoContainer>
+    <ButtonContainer>
+      <Button title="Login" onPress={() => navigation.navigate(routes.LOGIN)} />
+      <Button
+        title="Register"
+        color="secondary"
+        onPress={() => navigation.navigate(routes.SIGNUP)}
+      />
+    </ButtonContainer>
+  </Background>
+)
 
-// Main Function To Export 
-function WelcomeScreen({ navigation }) {
-  return (
-    <ImageBackground
-      blurRadius={10}
-      style={styles.background}
-      source={require('../assets/background.jpg')}
-    >
-      <View style={styles.logoContainer}>
-        <Image source={require('../assets/MLogo.png')} style={styles.logo} />
-
-        <AppText style={styles.tagline}> Every Item, Just A Tap Away!</AppText>
-      </View>
-      <View style={styles.buttonContainer}>
-        <AppButton title="Login" onPress={() => navigation.navigate('Login')} />
-        <AppButton
-          title="Register"
-          color="secondary"
-          onPress={() => navigation.navigate('SignUp')}
-        />
-      </View>
-    </ImageBackground>
-  )
-}
-//Styles 
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  buttonContainer: {
-    width: '100%',
-    padding: 10,
-    marginVertical: 10,
-  },
-  logo: {
-    width: 100,
-    height: 100,
-  },
-  logoContainer: {
-    position: 'absolute',
-    top: 70,
-    alignItems: 'center',
-  },
-
-  tagline: {
-    fontSize: 20,
-    fontWeight: '600',
-    fontStyle: 'italic',
-    textTransform: 'capitalize',
-    paddingVertical: 20,
-  },
-})
 export default WelcomeScreen

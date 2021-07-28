@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -6,7 +6,7 @@ import colors from '../../config/colors'
 import FoodCategoryItem from '../../components/foodApp/FoodCategory'
 import Food from '../../components/foodApp/FoodListItem'
 import Screen from '../../components/Screen'
-//import categoryData from '../../Seed/FoodCat'
+
 const categoryData = []
 import { getCurrentStore, getStoreData } from '../../store/store'
 
@@ -16,10 +16,11 @@ function Home({ route, navigation }) {
   const foods = useSelector(getCurrentStore('food'))
   useEffect(() => dispatch(getStoreData('food')), [])
 
-  const [categories, setCategories] = React.useState(categoryData)
+  const getCategory = (foods) => {}
+  const [categories, setCategories] = useState(categoryData)
 
   return (
-    <Screen style={styles.container}>
+    <Screen>
       {/* Main categories   */}
       <FoodCategoryItem item={{ ...categories[0] }} />
 
@@ -53,12 +54,8 @@ function Home({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.lightGray4,
-  },
   shadow: {
-    shadowColor: '#000',
+    shadowColor: colors.black,
     shadowOffset: {
       width: 0,
       height: 3,

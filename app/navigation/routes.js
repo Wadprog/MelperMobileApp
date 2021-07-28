@@ -6,4 +6,7 @@ export default Object.freeze({
   HOME: 'HOME',
   SOCIAL: 'SOCIAL',
   ACCOUNT: 'ACCOUNT',
+  LOGIN: 'Login',
+  SIGNUP: 'SignUp',
+  STORE:'Store',
 })
