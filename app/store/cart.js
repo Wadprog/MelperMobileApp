@@ -1,4 +1,7 @@
+import * as action from './api'
 import { createSlice } from '@reduxjs/toolkit'
+import env from '../config'
+const url = env.endpoints.MAKE_PAYMENT
 const initialState = {
   orders: [],
   loading: false,
@@ -30,10 +33,10 @@ const Cart = createSlice({
     productsPayRequest: (sate, action) => {
       sate.loading = true
     },
-    productsPayRequestSucceeded: (sate, action) => {
-      sate.loading = false
+    productsPayRequestSucceeded: (state, action) => {
+      state.loading = false
       state.orders = action.payload
-      sate.error=null
+      state.error = null
     },
     productsPayRequestFailed: (sate, action) => {
       sate.loading = false
@@ -46,5 +49,16 @@ const Cart = createSlice({
 export default Cart.reducer
 export const addProduct = Cart.actions.productAdded.type
 export const removeProduct = Cart.actions.productRemoved.type
-
+export const payOrders = () => (dispatch, getState) => {
+  dispatch(
+    action.apiCallBegan({
+      url,
+      data: getState().cart.orders,
+      method: 'POST',
+      onSuccess: Cart.actions.productsPayRequestSucceeded.type,
+      onStart: Cart.actions.productsPayRequest.type,
+      onError: Cart.actions.productsPayRequestFailed.type,
+    })
+  )
+}
 export const getProducts = (state) => state.cart.orders

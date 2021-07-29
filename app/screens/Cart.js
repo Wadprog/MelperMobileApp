@@ -8,7 +8,7 @@ import styled from 'styled-components/native'
 import colors from '../config/colors'
 import sizes from '../config/size'
 import env from '../config'
-import { addProduct, removeProduct } from '../store/cart'
+import { addProduct, removeProduct, payOrders } from '../store/cart'
 import Button from '../components/AppButton'
 
 const EXPECTED_HEADER = env.EXPECTED_HEADER
@@ -24,6 +24,7 @@ const Container = styled.View`
 
 function Cart(props) {
   const orders = useSelector(getProducts)
+  const dispatch = useDispatch()
 
   return (
     <Screen>
@@ -33,7 +34,7 @@ function Cart(props) {
           renderItem={({ item }) => <ListItem key={item.id} item={item} />}
           keyExtractor={(item) => `${item.id}`}
         />
-        <Button title="Order" />
+        <Button title="Order" onPress={() => dispatch(payOrders())} />
       </Container>
     </Screen>
   )
@@ -108,7 +109,6 @@ const ListItem = ({ item }) => {
             dispatch({ type: removeProduct, payload: item.id })
           }
         />
-       
       </View>
     </View>
   )

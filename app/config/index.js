@@ -16,6 +16,7 @@ const environment = {
       MARKET: '/market',
       STORE: '/store/',
       EXPECTED_HEADER: 'x-auth-token',
+      MAKE_PAYMENT: '/payments',
     },
   },
   staging: {
@@ -30,6 +31,8 @@ const environment = {
       LOG_IN: '/exec?action=auth&sheet=users',
       MARKET: '/exec?action=read&sheet=Markets',
       STORE: '/exec?action=readStore&sheet=',
+      EXPECTED_HEADER: 'x-auth-token',
+      MAKE_PAYMENT: '/payments',
     },
   },
   production: {},
