@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/native'
 import size from '../../config/size'
 import IncrementDecrement from '../IncrementDecrement'
 import Text from '../AppText'
 import env from '../../config'
-
+import { useSelector } from 'react-redux'
+import { getProducts } from '../../store/cart'
 const Image = styled.Image`
   width: ${size.width}px;
   height: 100%;
@@ -39,11 +40,19 @@ const Price = styled(Text)`
   font-weight: bold;
 `
 const FoodInfo = ({ food, onIncrement, onDecrement, amountOrdered = 0 }) => {
-  const [val, setVal] = useState(amountOrdered)
+  const amountInCart = useSelector(getProducts)
+
   const handleMore = () => setVal(val + 1)
   const handleLess = () => (val > 0 ? setVal(val - 1) : setVal(0))
   const uri = env.BASE_URL + food.photo
 
+  const [val, setVal] = useState(0)
+
+  useEffect(() => {
+    const order = amountInCart.find((order) => order.id == food.id)
+    if (order) return setVal(order.amountInCart)
+    else setVal(0)
+  }, [amountInCart])
   return (
     <Container>
       <Header>

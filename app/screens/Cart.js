@@ -1,21 +1,16 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProducts } from '../store/cart'
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { StyleSheet, View, Text, Image, FlatList } from 'react-native'
+import IncrementDecrement from '../components/IncrementDecrement'
 import Screen from '../components/Screen'
 import styled from 'styled-components/native'
 import colors from '../config/colors'
 import sizes from '../config/size'
 import env from '../config'
-import { images, FONTS } from '../constants'
+import { addProduct, removeProduct } from '../store/cart'
+import Button from '../components/AppButton'
+
 const EXPECTED_HEADER = env.EXPECTED_HEADER
 
 const Container = styled.View`
@@ -29,96 +24,93 @@ const Container = styled.View`
 
 function Cart(props) {
   const orders = useSelector(getProducts)
-  const dispatch = useDispatch()
 
   return (
     <Screen>
       <Container>
         <FlatList
           data={orders}
-          renderItem={({ item }) => <LIstItem item={item} />}
+          renderItem={({ item }) => <ListItem key={item.id} item={item} />}
           keyExtractor={(item) => `${item.id}`}
         />
+        <Button title="Order" />
       </Container>
     </Screen>
   )
 }
 
-const LIstItem = ({ item }) => {
+const ListItem = ({ item }) => {
+  const dispatch = useDispatch()
   const uri = EXPECTED_HEADER + item.image
   return (
-    
+    <View
+      style={[
+        styles.shadow,
+        {
+          flexDirection: 'row',
+          marginHorizontal: sizes.padding,
+          padding: sizes.radius,
+          height: 110,
+          borderRadius: 20,
+          backgroundColor: colors.lightGray3,
+          with: '100%',
+          marginVertical: sizes.padding / 2,
+        },
+      ]}
+    >
       <View
-        style={[
-          styles.shadow,
-          {
-            flexDirection: 'row',
-            marginHorizontal: sizes.padding,
-            padding: sizes.radius,
-            height: 110,
-            borderRadius: 20,
-            backgroundColor: colors.white,
-            with: '100%',
-          },
-        ]}
+        style={{
+          width: 50,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: colors.lightGray2,
+          borderRadius: 20,
+        }}
       >
-        <View
-          style={{
-            width: 50,
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: colors.lightGray2,
-            borderRadius: 20,
-          }}
-        >
-          {/* <Image
+        {/* <Image
           source={{ uri }}
           resizeMode="contain"
           style={{
             width: '60%',
             height: '60%',
           }}
-        /> */}
-        </View>
-
-        {/* Wordings section */}
-        <View
-          style={{
-            flex: 1,
-            marginLeft: sizes.radius,
-            justifyContent: 'center',
-          }}
-        >
-          <Text style={{ ...FONTS.h2 }}>Product name</Text>
-          <Text style={{ ...FONTS.body3 }}>Adding to your cart</Text>
-        </View>
-
-        {/* Button */}
-        <View
-          style={{
-            marginRight: sizes.radius,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <TouchableOpacity
-            style={{
-              backgroundColor: colors.primary,
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '70%',
-              width: 40,
-              borderRadius: 10,
-            }}
-            onPress={() => {
-              console.log('Promo on clicked')
-            }}
-          >
-            <MaterialCommunityIcons name="home" />
-          </TouchableOpacity>
-        </View>
+        />  */}
       </View>
-   
+
+      {/* Wordings section */}
+      <View
+        style={{
+          flex: 1,
+          marginLeft: sizes.radius,
+          justifyContent: 'center',
+        }}
+      >
+        <Text> {item.name}</Text>
+        <Text>
+          {item.amountInCart}* ${item.price} = $
+          {(item.price * item.amountInCart).toFixed(2)}
+        </Text>
+      </View>
+
+      {/* Buttons*/}
+      <View
+        style={{
+          marginRight: sizes.radius,
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+        }}
+      >
+        <IncrementDecrement
+          value={item.amountInCart}
+          onIncrement={() => dispatch({ type: addProduct, payload: item })}
+          onDecrement={() =>
+            dispatch({ type: removeProduct, payload: item.id })
+          }
+        />
+       
+      </View>
+    </View>
   )
 }
 

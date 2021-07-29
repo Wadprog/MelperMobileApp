@@ -34,7 +34,7 @@ const FoodDetails = ({ route, navigation }) => {
               dispatch({ type: addProduct, payload: item })
             }}
             onDecrement={() => {
-              dispatch({ type: removeProduct, payload: item })
+              dispatch({ type: removeProduct, payload: item.id })
             }}
           />
         ))}
