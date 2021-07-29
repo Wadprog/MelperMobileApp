@@ -40,19 +40,19 @@ const Price = styled(Text)`
   font-weight: bold;
 `
 const FoodInfo = ({ food, onIncrement, onDecrement, amountOrdered = 0 }) => {
-  const amountInCart = useSelector(getProducts)
+  const orders = useSelector(getProducts)
 
-  const handleMore = () => setVal(val + 1)
-  const handleLess = () => (val > 0 ? setVal(val - 1) : setVal(0))
+  const handleMore = () => setAmountInCart(amountInCart + 1)
+  const handleLess = () => (amountInCart > 0 ? setAmountInCart(amountInCart - 1) : setAmountInCart(0))
   const uri = env.BASE_URL + food.photo
 
-  const [val, setVal] = useState(0)
+  const [amountInCart, setAmountInCart] = useState(0)
 
   useEffect(() => {
-    const order = amountInCart.find((order) => order.id == food.id)
-    if (order) return setVal(order.amountInCart)
-    else setVal(0)
-  }, [amountInCart])
+    const order = orders.find((order) => order.id == food.id)
+    if (order) return setAmountInCart(order.amountInCart)
+    else setAmountInCart(0)
+  }, [orders])
   return (
     <Container>
       <Header>
@@ -61,7 +61,7 @@ const FoodInfo = ({ food, onIncrement, onDecrement, amountOrdered = 0 }) => {
           <IncrementDecrement
             onIncrement={onIncrement}
             onDecrement={onDecrement}
-            value={val}
+            value={amountInCart}
           />
         </AmountModifierContainer>
       </Header>

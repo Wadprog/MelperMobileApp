@@ -1,144 +1,113 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, ImageBackground } from 'react-native'
-import { COLORS, SIZES, FONTS } from '../../constants'
+import styled from 'styled-components/native'
+import { useSelector, useDispatch } from 'react-redux'
+
+// Custom dependencies
+import Text from '../../components/AppText'
+import Screen from '../../components/Screen'
 import sizes from '../../config/size'
 import colors from '../../config/colors'
 import env from '../../config'
 import MoreLess from '../../components/IncrementDecrement'
 import Orderer from '../../components/OrderDetails'
-import { useSelector, useDispatch } from 'react-redux'
 import { addProduct, removeProduct, getProducts } from '../../store/cart'
-const ItemDetail = ({ route, navigation, OnIncrement, onDecrement }) => {
-  // Render
+
+// Components
+const Background = styled.ImageBackground`
+  width: 100%;
+  height: 100%;
+`
+const DescriptionBox = styled.View`
+  position: absolute;
+  top: 33%;
+  left: 30%;
+  flex-direction: row;
+  padding: ${sizes.padding}px;
+  background-color: ${colors.transparentLightGray};
+  width: 50%;
+  border-radius: ${sizes.radius}px;
+`
+const PriceAndName = styled(Text)`
+  color: ${colors.lightGray4};
+`
+const Title = styled(Text)`
+  color: ${colors.white};
+  font-size: ${sizes.h1}px;
+`
+const Type = styled(Text)`
+  color: ${colors.lightGray2};
+  font-size: ${sizes.body1}px;
+  line-height: ${sizes.body1 * 1.1};
+`
+const BottomDetails = styled.View`
+  position: absolute;
+  bottom: 20%;
+  left: ${sizes.padding3}px;
+  padding: ${sizes.padding / 2}px;
+`
+const PriceContainer = styled.View`
+  flex: 1.5;
+  align-items: flex-end;
+  justify-content: flex-end;
+`
+const Price = styled(PriceAndName)`
+  font-size: ${sizes.h4}px;
+  line-height: ${sizes.h4 * 1.1};
+  margin-bottom: ${sizes.padding * 2}px;
+`
+const NameContainer = styled.View`
+  flex: 2;
+`
+const CounterWrapper = styled.View`
+  position: absolute;
+  top: 93%;
+  left: 50%;
+  margin-top: ${sizes.base10}px;
+`
+const ItemDetail = ({ route }) => {
   let { itemInfo } = route.params
+  // Hooks
   const dispatch = useDispatch()
   const orders = useSelector(getProducts)
-  const { log } = console
   const [amountInCart, setAmountInCart] = useState(0)
-
-  const reducer = (acc, item) => {
-    if (item.productId == itemInfo.productId) {
-      return amount + 1
-    }
-    return amount + 0
-  }
-
-  function renderInfo() {
-    if (itemInfo) {
-      const uri = env.BASE_URL + itemInfo.image
-      return (
-        <ImageBackground
-          source={{ uri }}
-          resizeMode="cover"
-          style={{ width: '100%', height: '100%' }}
-        >
-          <Text>in cart at the moment {amountInCart}</Text>
-          {/* Product Tag */}
-          <View
-            style={{
-              position: 'absolute',
-              top: '45%',
-              left: '15%',
-              borderRadius: 80,
-              backgroundColor: colors.transparentLightGray1,
-              height: 40,
-              width: 40,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <View
-              style={{
-                borderRadius: 20,
-                backgroundColor: colors.blue,
-                height: 10,
-                width: 10,
-              }}
-            ></View>
-          </View>
-
-          <View
-            style={{
-              position: 'absolute',
-              top: '43%',
-              left: '30%',
-              flexDirection: 'row',
-              padding: SIZES.radius * 1.5,
-              backgroundColor: COLORS.transparentLightGray1,
-              width: '50%',
-              borderRadius: 10,
-            }}
-          >
-            <View style={{ flex: 2 }}>
-              <Text style={{ color: colors.darkGray, ...FONTS.h3 }}>
-                {itemInfo.productName}
-              </Text>
-            </View>
-
-            <View
-              style={{
-                flex: 1.5,
-                alignItems: 'flex-end',
-                justifyContent: 'flex-end',
-              }}
-            >
-              <Text
-                style={{
-                  color: colors.darkGreen,
-                  fontSize: sizes.h4,
-                  lineHeight: 22,
-                }}
-              >
-                $ {itemInfo.price.toFixed(2)}
-              </Text>
-              <View style={{ position: 'relative', marginTop: 25 }}>
-                <MoreLess
-                  onIncrement={() =>
-                    dispatch({ type: addProduct, payload: itemInfo })
-                  }
-                  onDecrement={() => log('Decrementing')}
-                />
-              </View>
-            </View>
-          </View>
-
-          <View
-            style={{
-              position: 'absolute',
-              bottom: '20%',
-              left: SIZES.padding,
-              right: SIZES.padding,
-            }}
-          >
-            <Text style={{ color: colors.lightGray2, ...FONTS.body2 }}>
-              Furniture
-            </Text>
-            <Text
-              style={{
-                marginTop: SIZES.radius,
-                color: COLORS.white,
-                ...FONTS.h1,
-              }}
-            >
-              {itemInfo.productName}
-            </Text>
-          </View>
-        </ImageBackground>
-      )
-    } else {
-      ;<View></View>
-    }
-  }
+  const uri = env.BASE_URL + itemInfo.image
+  // ON Render
   useEffect(() => {
-    setAmountInCart(orders.reduce(reducer, 0))
-  }, [])
-  return (
-    <View style={{ flex: 1, backgroundColor: colors.white }}>
-      <Text> Hello App</Text>
-      {renderInfo()}
+    const order = orders.find((order) => order.id == itemInfo.id)
+    if (order) return setAmountInCart(order.amountInCart)
+    return setAmountInCart(0)
+  }, [orders])
 
-      {/* <Orderer styleSize="small" /> */}
-    </View>
+  return (
+    <Screen>
+      <Background source={{ uri }} resizeMode="cover">
+        <DescriptionBox>
+          <NameContainer>
+            <PriceAndName>{itemInfo.productName}</PriceAndName>
+          </NameContainer>
+          <PriceContainer>
+            <Price>$ {itemInfo.price.toFixed(2)}</Price>
+          </PriceContainer>
+          <CounterWrapper>
+            <MoreLess
+              value={amountInCart}
+              onIncrement={() =>
+                dispatch({ type: addProduct, payload: itemInfo })
+              }
+              onDecrement={() =>
+                dispatch({ type: removeProduct, payload: itemInfo.id })
+              }
+              style={{ position: 'relative' }}
+            />
+          </CounterWrapper>
+        </DescriptionBox>
+        <BottomDetails>
+          <Type>Furniture</Type>
+          <Title>{itemInfo.productName}</Title>
+        </BottomDetails>
+        <Orderer styleSize="small" />
+      </Background>
+    </Screen>
   )
 }
 

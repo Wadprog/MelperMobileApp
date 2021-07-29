@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, FlatList, View } from 'react-native'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-// Custom dependencies 
+// Custom dependencies
 import Screen from '../../components/Screen'
 import sizes from '../../config/size'
 import colors from '../../config/colors'
@@ -64,8 +64,7 @@ const Home = ({ navigation }) => {
   useEffect(() => {
     dispatch(getStoreData('secondHand'))
     setTabList(items)
-    if (items?.length)
-    setSelectedTab(items[0])
+    if (items?.length) setSelectedTab(items[0])
   }, [])
 
   return (
@@ -83,7 +82,7 @@ const Home = ({ navigation }) => {
             showsHorizontalScrollIndicator={false}
             data={selectedTab.productList}
             renderItem={({ item }) => <ListItem item={item} />}
-            keyExtractor={(item) => `${item.productId}`}
+            keyExtractor={(item) => `second-hand-${item.id}`}
           />
         </View>
       </View>

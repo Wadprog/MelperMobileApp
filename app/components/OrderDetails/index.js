@@ -35,16 +35,10 @@ const index = ({ styleSize = 'big', ...rest }) => {
   const props = { ...rest, Total, amountOfOrders }
 
   const handleOrder = () => {
-    console.log({
-      msg: 'in an editing mode',
-      editingCredit,
-      editingLocation,
-    })
     if (rest.onOrder) return rest.onOrder()
     return navigation.navigate('cart')
   }
   const handleLocation = () => {
-    console.log({ msg: 'in an editing mode', editingCredit, editingLocation })
     if (rest.onSetLocation) return rest.onSetLocation()
     return toggleLocation()
   }
@@ -58,7 +52,7 @@ const index = ({ styleSize = 'big', ...rest }) => {
   }
   return (
     <>
-      {styleSize === 'big' ? (
+      {styleSize == 'big' ? (
         <Big
           {...props}
           onOrder={handleOrder}

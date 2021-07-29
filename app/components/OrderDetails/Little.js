@@ -1,112 +1,95 @@
 import React from 'react'
-import { View, TouchableOpacity, Text } from 'react-native'
+import { TouchableOpacity, Text } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import styled from 'styled-components/native'
 
+// Custom dependencies
 import sizes from '../../config/size'
 import colors from '../../config/colors'
 
+// Components
+const Container = styled.View`
+  position: absolute;
+  bottom: 5%;
+  left: ${sizes.padding}px;
+  right: ${sizes.padding}px;
+  flex-direction: row;
+  height: 70px;
+  background-color: ${colors.white};
+  border-radius: 35px;
+`
+const IconContainer = styled.View`
+  flex: 2;
+  align-items: center;
+  justify-content: center;
+`
+const MiddleButtonWrapper = styled.TouchableOpacity`
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+  background-color: ${colors.secondary};
+`
 function Little({ amountOfOrders, Total, ...rest }) {
   return (
-    <View
-      style={{
-        position: 'absolute',
-        bottom: '5%',
-        left: sizes.padding,
-        right: sizes.padding,
-        flexDirection: 'row',
-        height: 70,
-        backgroundColor: colors.white,
-        borderRadius: 35,
-      }}
-    >
-      <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
+    <Container>
+      <IconContainer>
         <TouchableOpacity onPress={() => rest.onSetLocation()}>
           <MaterialCommunityIcons
             name="map-marker"
-            color={colors.blue}
+            color={colors.secondary}
             size={35}
           />
         </TouchableOpacity>
-      </View>
+      </IconContainer>
 
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <TouchableOpacity
-          style={{
-            position: 'relative',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: 50,
-            width: 50,
-            borderRadius: 10,
-            backgroundColor: colors.secondary,
-          }}
-          onPress={() => rest.onOrder()}
-        >
-          {amountOfOrders && (
-            <View
-              style={{
-                borderRadius: 99,
-                width: 30,
-                height: 30,
-                position: 'absolute',
-                top: -10,
-                right: -4,
-                backgroundColor: colors.primary,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Text
-                style={{
-                  color: colors.white,
-                  fontSize: 16,
-                  fontWeight: 'bold',
-                }}
-              >
-                {amountOfOrders}
-              </Text>
-            </View>
-          )}
+      <IconContainer>
+        <MiddleButtonWrapper onPress={() => rest.onOrder()}>
           <MaterialCommunityIcons name="cart" color={colors.white} size={35} />
-        </TouchableOpacity>
-      </View>
+        </MiddleButtonWrapper>
+      </IconContainer>
 
-      <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
+      <IconContainer>
         <TouchableOpacity onPress={() => rest.onSetCreditCard()}>
-          {Total && (
-            <View
-              style={{
-                borderRadius: 99,
-                padding: 3,
-                position: 'absolute',
-                top: -15,
-                right: -46,
-                backgroundColor: colors.primary,
-                justifyContent: 'center',
-                alignItems: 'center',
-                zIndex: 1,
-              }}
-            >
-              <Text
-                style={{
-                  color: colors.white,
-                  fontSize: 16,
-                  fontWeight: 'bold',
-                }}
-              >
-                ${Total}
-              </Text>
-            </View>
-          )}
           <MaterialCommunityIcons
             name="credit-card"
-            color={colors.blue}
+            color={colors.secondary}
             size={35}
           />
         </TouchableOpacity>
-      </View>
-    </View>
+      </IconContainer>
+    </Container>
   )
 }
 
 export default Little
+
+// {
+//   amountOfOrders && (
+//     <View
+//       style={{
+//         borderRadius: 99,
+//         width: 30,
+//         height: 30,
+//         position: 'absolute',
+//         top: -10,
+//         right: -4,
+//         backgroundColor: colors.primary,
+//         justifyContent: 'center',
+//         alignItems: 'center',
+//       }}
+//     >
+//       <Text
+//         style={{
+//           color: colors.white,
+//           fontSize: 16,
+//           fontWeight: 'bold',
+//         }}
+//       >
+//         {amountOfOrders}
+//       </Text>
+//     </View>
+//   )
+// }

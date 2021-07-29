@@ -12,6 +12,7 @@ const Cart = createSlice({
   initialState,
   reducers: {
     productAdded: (orders, action) => {
+      console.log('Called ')
       const index = orders.orders.findIndex(
         (order) => order.id == action.payload.id
       )
