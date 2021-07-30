@@ -31,7 +31,6 @@ const CurrentLoction = styled.TouchableOpacity`
 `
 const AppQuestion = styled(Text)`
   font-weight: bold;
- 
 `
 
 const LocationSuggestion = styled(Text)`
@@ -40,7 +39,7 @@ const LocationSuggestion = styled(Text)`
 const Row = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: ${sizes.base10*1.5}px;
+  margin-bottom: ${sizes.base10 * 1.5}px;
 `
 export default function Map() {
   const [pin, setPin] = React.useState({
