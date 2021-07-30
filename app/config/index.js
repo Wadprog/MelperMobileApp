@@ -9,7 +9,7 @@ const environment = {
     size,
     colors,
     text,
-    BASE_URL: 'http://localhost:4000/',
+    BASE_URL: 'http://143.198.130.146:4000/', //'http://localhost:4000/',
     endpoints: {
       REGISTER: '/register',
       LOG_IN: '/auth',
@@ -24,13 +24,12 @@ const environment = {
     size,
     colors,
     text,
-    BASE_URL:
-      'https://script.google.com/macros/s/AKfycbyYu5WBkf7_B-cFYwSqOZVLfJfWVsz8Esv39a-gdKWKDrc5o4hUARdmFRT2S1S1_glERQ',
+    BASE_URL: 'http://143.198.130.146:4000/',
     endpoints: {
-      REGISTER: '/exec?action=register&sheet=users',
-      LOG_IN: '/exec?action=auth&sheet=users',
-      MARKET: '/exec?action=read&sheet=Markets',
-      STORE: '/exec?action=readStore&sheet=',
+      REGISTER: '/register',
+      LOG_IN: '/auth',
+      MARKET: '/market',
+      STORE: '/store/',
       EXPECTED_HEADER: 'x-auth-token',
       MAKE_PAYMENT: '/payments',
     },

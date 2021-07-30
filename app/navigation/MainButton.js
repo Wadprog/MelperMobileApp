@@ -5,7 +5,7 @@ import { TouchableHighlight } from 'react-native'
 
 //Custom dependencies
 import color from '../config/colors'
-import { appLogo } from '../config/image'
+import logo  from '../config/image'
 
 const Button = styled.View`
   width: 80px;
@@ -26,7 +26,7 @@ export default function MainButton({ onPress }) {
   return (
     <TouchableHighlight onPress={onPress}>
       <Button>
-        <Logo source={appLogo} />
+        <Logo source={logo.appLogo} />
       </Button>
     </TouchableHighlight>
   )

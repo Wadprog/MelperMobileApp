@@ -1,9 +1,19 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
-import { images, FONTS } from '../../constants'
+import { StyleSheet, View, TouchableOpacity } from 'react-native'
+import styled from 'styled-components/native'
 import colors from '../../config/colors'
 import sizes from '../../config/size'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import Text from '../AppText'
+
+const Title = styled(Text)`
+  font-size: ${sizes.h2}px;
+  line-height: ${sizes.body1}px;
+`
+const Subtitle = styled(Text)`
+  font-size: ${sizes.body3}px;
+  line-height: ${sizes.h2}px;
+`
 const PromotionCard = () => {
   return (
     <View
@@ -28,14 +38,7 @@ const PromotionCard = () => {
           borderRadius: 20,
         }}
       >
-        <Image
-          source={images.sofa}
-          resizeMode="contain"
-          style={{
-            width: '60%',
-            height: '60%',
-          }}
-        />
+        <MaterialCommunityIcons name="home" color="gold" size={25} />
       </View>
 
       {/* Wordings section */}
@@ -46,8 +49,8 @@ const PromotionCard = () => {
           justifyContent: 'center',
         }}
       >
-        <Text style={{ ...FONTS.h2 }}>Special Offer</Text>
-        <Text style={{ ...FONTS.body3 }}>Adding to your cart</Text>
+        <Title>Special Offer</Title>
+        <Subtitle>Adding to your cart</Subtitle>
       </View>
 
       {/* Button */}

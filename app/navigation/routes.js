@@ -8,5 +8,8 @@ export default Object.freeze({
   ACCOUNT: 'ACCOUNT',
   LOGIN: 'Login',
   SIGNUP: 'SignUp',
-  STORE:'Store',
+  STORE: 'Store',
+  CART: 'cart',
+  BOTTOM_TAB:"BOTTOM-TAB-NAV"
+
 })

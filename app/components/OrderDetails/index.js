@@ -13,7 +13,7 @@ import useToggle from '../../hooks/useToggle'
 import Screen from '../../components/Screen'
 import Map from '../../components/Map'
 import Credit from '../Credit'
-
+import routes from '../../navigation/routes'
 const CloseBtn = styled.TouchableOpacity`
   left: 10px;
   z-index: 5;
@@ -36,7 +36,7 @@ const index = ({ styleSize = 'big', ...rest }) => {
 
   const handleOrder = () => {
     if (rest.onOrder) return rest.onOrder()
-    return navigation.navigate('cart')
+    return navigation.navigate(routes.CART)
   }
   const handleLocation = () => {
     if (rest.onSetLocation) return rest.onSetLocation()

@@ -56,7 +56,7 @@ const ScrollAbleTab = ({ tabList, selectedTab, onPress }) => {
 
 import { getCurrentStore, getStoreData } from '../../store/store'
 
-const Home = ({ navigation }) => {
+const Home = ({}) => {
   const dispatch = useDispatch()
   const items = useSelector(getCurrentStore('secondHand'))
   const [tabList, setTabList] = useState([])
