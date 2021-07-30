@@ -19,7 +19,6 @@ const CloseBtn = styled.TouchableOpacity`
   z-index: 5;
 `
 const Page = styled(Screen)`
-  background-color: #f6cfdf;
   position: relative;
 `
 const index = ({ styleSize = 'big', ...rest }) => {
@@ -59,7 +58,7 @@ const index = ({ styleSize = 'big', ...rest }) => {
           onSetCreditCard={handleCreditCard}
           onSetLocation={handleLocation}
         />
-      ) : (
+      ) : ( 
         <Little
           {...props}
           onOrder={handleOrder}

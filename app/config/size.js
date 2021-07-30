@@ -3,6 +3,7 @@ const { width, height } = Dimensions.get('window')
 
 export default {
   base: 8,
+  base10:10,
   font: 14,
   radius: 30,
   padding: 10,
