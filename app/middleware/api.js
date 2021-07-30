@@ -13,6 +13,7 @@ const api = (store) => (next) => async (action) => {
       ...action.payload,
     })
   
+    console.log('FINE')
     store.dispatch({
       type: actions.apiCallSucceeded.type,
       payload: response.data,

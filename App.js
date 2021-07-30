@@ -8,7 +8,6 @@ import { store } from './app/store'
 
 export default function App() {
   const [user, setUser] = useState()
-  console.log({State: store.getState()})
   return (
     <Provider store={store}>
       <AuthContext.Provider value={{ user, setUser }}>
