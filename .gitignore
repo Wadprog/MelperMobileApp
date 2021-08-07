@@ -315,6 +315,7 @@ typings/
 
 # dotenv environment variables file
 .env
+env.js
 
 
 ### Xcode ###

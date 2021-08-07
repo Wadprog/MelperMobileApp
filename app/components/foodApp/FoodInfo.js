@@ -3,10 +3,10 @@ import styled from 'styled-components/native'
 import size from '../../config/size'
 import IncrementDecrement from '../IncrementDecrement'
 import Text from '../AppText'
-import env from '../../config'
 import { useSelector } from 'react-redux'
 import { getProducts } from '../../store/cart'
-const Image = styled.Image`
+import { Image } from 'react-native-expo-image-cache'
+const Photo = styled(Image)`
   width: ${size.width}px;
   height: 100%;
 `
@@ -43,8 +43,9 @@ const FoodInfo = ({ food, onIncrement, onDecrement, amountOrdered = 0 }) => {
   const orders = useSelector(getProducts)
 
   const handleMore = () => setAmountInCart(amountInCart + 1)
-  const handleLess = () => (amountInCart > 0 ? setAmountInCart(amountInCart - 1) : setAmountInCart(0))
-  const uri = env.BASE_URL + food.photo
+  const handleLess = () =>
+    amountInCart > 0 ? setAmountInCart(amountInCart - 1) : setAmountInCart(0)
+
 
   const [amountInCart, setAmountInCart] = useState(0)
 
@@ -56,7 +57,10 @@ const FoodInfo = ({ food, onIncrement, onDecrement, amountOrdered = 0 }) => {
   return (
     <Container>
       <Header>
-        <Image source={{ uri }} />
+        <Photo
+          uri={food.photo.original}
+          preview={{ uri: food.photo.thumbnail }}
+        />
         <AmountModifierContainer>
           <IncrementDecrement
             onIncrement={onIncrement}

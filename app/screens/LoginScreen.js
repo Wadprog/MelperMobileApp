@@ -82,8 +82,7 @@ const LoginScreen = () => {
             autoCorrect={false}
             editable={!user.loading}
             icon="key"
-            keyboardType="password"
-            textContentType="Password"
+            textContentType="password"
             placeholder="Pin"
             secureTextEntry
             name="pin"

@@ -10,6 +10,8 @@ export default Object.freeze({
   SIGNUP: 'SignUp',
   STORE: 'Store',
   CART: 'cart',
-  BOTTOM_TAB:"BOTTOM-TAB-NAV"
+  BOTTOM_TAB:"BOTTOM-TAB-NAV",
+  TAXI_HOME: 'taxi',
+  TAXI_MAP:"TAXI_MAP"
 
 })

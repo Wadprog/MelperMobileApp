@@ -4,16 +4,15 @@ import styled from 'styled-components/native'
 // Custom dependenciens
 import sizes from '../../config/size'
 import colors from '../../config/colors'
-import env from '../../config'
-
+import { Image } from 'react-native-expo-image-cache'
 //Components
 const Container = styled.TouchableOpacity`
-  margin-left: ${sizes.padding3};
+  margin-left: ${sizes.padding3}px;
 `
 const Card = styled.View`
-  width: ${sizes.width / 2};
+  width: ${sizes.width / 2}px;
 `
-const Image = styled.Image`
+const Photo = styled(Image)`
   width: 100%;
   height: 100%;
   border-radius: ${sizes.radius};
@@ -47,14 +46,18 @@ const Price = styled.Text`
   line-height: ${sizes.body1}px;
 `
 const ListItem = ({ item }) => {
-  const uri = env.BASE_URL + item.image
+ 
   const navigation = useNavigation()
   return (
     <Container
       onPress={() => navigation.navigate('Article Details', { itemInfo: item })}
     >
       <Card>
-        <Image source={{ uri }} resizeMode="cover" />
+        <Photo
+          uri={item.image.original}
+          preview={{ uri: item.image.thumbnail }}
+          resizeMode="cover"
+        />
         <DetailsContainer>
           <DetailsTitle>Furniture</DetailsTitle>
           <Name>{item.productName}</Name>

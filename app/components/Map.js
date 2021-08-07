@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import MapView, { Callout, Circle, Marker } from 'react-native-maps'
 import Screen from './Screen'
@@ -8,6 +8,11 @@ import styled from 'styled-components/native'
 import Text from './AppText'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import Button from './AppButton'
+import { setPosition, getLocation } from '../store/map'
+import { getCurrentUser } from '../store/auth'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { GOOGLE_MAP_API_KEY} from '../env.js'
 const Bottom = styled.View`
   flex: 1;
   border-top-left-radius: ${sizes.radius}px;
@@ -42,93 +47,125 @@ const Row = styled.View`
   margin-bottom: ${sizes.base10 * 1.5}px;
 `
 export default function Map() {
-  const [pin, setPin] = React.useState({
-    latitude: 37.78825,
-    longitude: -122.4324,
-  })
-  const [region, setRegion] = React.useState({
-    latitude: 37.78825,
-    longitude: -122.4323,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  })
+  console.log({ GOOGLE_MAP_API_KEY })
+  const dispatch = useDispatch()
+  const locations = useSelector(getLocation)
+  const currentUser = useSelector(getCurrentUser)
 
+  useEffect(() => {
+    if (!currentUser.user.user.homeLocation) return
+    const loc = currentUser.user.user.homeLocation
+
+    dispatch(
+      setPosition({
+        lat: loc.latitude,
+        lng: loc.longitude || loc.longitude?.$numberDecimal,
+      })
+    )
+  }, [])
   return (
     <PageWrapper>
       <GooglePlacesAutocomplete
-        placeholder="Search directions"
+        debounce={400}
+        enablePoweredByContainer={false}
         fetchDetails={true}
-        GooglePlacesSearchQuery={{
-          rankby: 'distance',
-        }}
+        fetchDetails={true}
+        minLength={4}
         onPress={(data, details = null) => {
-          // 'details' is provided when fetchDetails = true
-          console.log(data, details)
-          setRegion({
-            latitude: details.geometry.location.lat,
-            longitude: details.geometry.location.lng,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          })
+          dispatch(
+            setPosition({
+              ...details.geometry.location,
+              description: data.description,
+            })
+          )
         }}
+        placeholder="Delivery address"
         query={{
-          key: 'KEY',
+          key: GOOGLE_MAP_API_KEY,
           language: 'en',
-          components: 'country:us',
-          types: 'establishment',
-          radius: 30000,
-          location: `${region.latitude}, ${region.longitude}`,
         }}
+        returnKeyType={'search'}
         styles={{
           container: {
             flex: 0,
-            position: 'absolute',
             width: '100%',
-            zIndex: 1,
+            zIndex: 10,
           },
-          listView: { backgroundColor: 'white' },
+          listView: { backgroundColor: 'red' },
         }}
       />
       <MapView
+        mapType="mutedStandard"
         style={{ width: sizes.width, height: sizes.height * 0.75 }}
         initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitude: locations.position?.lat,
+          longitude: locations.position?.lng,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
         }}
-        provider="google"
-      >
-        <Marker
-          coordinate={pin}
-          pinColor="black"
-          draggable={true}
-          onDragStart={(e) => console.log('Drag start')}
-          onDragEnd={(e) => {
-            console.log('Done Dragging')
-            setPin({
-              latitude: e.nativeEvent.coordinate.latitude,
-              longitude: e.nativeEvent.coordinate.longitude,
+        region={{
+          latitude: locations.position?.lat,
+          longitude: locations.position?.lng,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
+        }}
+        onRegionChange={(region) => {
+          if (!locations.position) return
+          dispatch(
+            setPosition({
+              lat: region.latitude,
+              lng: region.longitude,
             })
-          }}
-        >
-          <Callout>
-            <Text>I'm here</Text>
-          </Callout>
-        </Marker>
-        <Circle center={pin} radius={500} />
+          )
+        }}
+      >
+        {locations.position?.lat && (
+          <Marker
+            coordinate={{
+              latitude: locations.position?.lat,
+              longitude: locations.position?.lng,
+              latitudeDelta: 0.005,
+              longitudeDelta: 0.005,
+            }}
+            pinColor="black"
+            draggable={true}
+            onDragStart={(e) => {}}
+            onDragEnd={(e) => {
+              dispatch(
+                setPosition({
+                  ...locations.position,
+                  lat: e.nativeEvent.coordinate.latitude,
+                  lng: e.nativeEvent.coordinate.longitude,
+                })
+              )
+            }}
+            title="Delivery Address"
+            description={locations.position?.description}
+            identifier="Delivery Location"
+          >
+            <Callout>
+              <Text> "I'm here"</Text>
+            </Callout>
+          </Marker>
+        )}
       </MapView>
       <CurrentLoction>
         <MaterialCommunityIcons name="crosshairs-gps" />
       </CurrentLoction>
-      <Bottom>
+      {/* <Bottom>
         <AppQuestion>Where do we send your order?</AppQuestion>
         <Row>
-          <LocationSuggestion>Your are current at </LocationSuggestion>
-          <Text>Your are current at </Text>
+          {locations.position?.description && (
+            <>
+              <LocationSuggestion>
+                Delivery address is set to{' '}
+              </LocationSuggestion>
+              <Text>{locations.position.description} </Text>
+            </>
+          )}
         </Row>
         <Button title="Next >" />
-      </Bottom>
+      </Bottom> */}
     </PageWrapper>
   )
 }

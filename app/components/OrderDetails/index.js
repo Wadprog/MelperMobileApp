@@ -66,7 +66,6 @@ const index = ({ styleSize = 'big', ...rest }) => {
           onSetLocation={handleLocation}
         />
       )}
-
       <Modal
         animationType="slide"
         transparent={true}

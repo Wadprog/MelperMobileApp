@@ -7,11 +7,11 @@ import Text from '../../components/AppText'
 import Screen from '../../components/Screen'
 import sizes from '../../config/size'
 import colors from '../../config/colors'
-import env from '../../config'
 import MoreLess from '../../components/IncrementDecrement'
 import Orderer from '../../components/OrderDetails'
 import { addProduct, removeProduct, getProducts } from '../../store/cart'
 
+// import ImageBackground from '../../components/AppImageBackground'
 // Components
 const Background = styled.ImageBackground`
   width: 100%;
@@ -70,7 +70,6 @@ const ItemDetail = ({ route }) => {
   const dispatch = useDispatch()
   const orders = useSelector(getProducts)
   const [amountInCart, setAmountInCart] = useState(0)
-  const uri = env.BASE_URL + itemInfo.image
   // ON Render
   useEffect(() => {
     const order = orders.find((order) => order.id == itemInfo.id)
@@ -80,7 +79,7 @@ const ItemDetail = ({ route }) => {
 
   return (
     <Screen>
-      <Background source={{ uri }} resizeMode="cover">
+      <Background source={{ uri: itemInfo.image.original }} resizeMode="cover">
         <DescriptionBox>
           <NameContainer>
             <PriceAndName>{itemInfo.productName}</PriceAndName>

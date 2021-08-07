@@ -9,6 +9,8 @@ import AppNavigation from './Drawer'
 import AppTheme from './theme'
 import storage from '../utility/secureCache'
 import { logged } from '../store/auth'
+
+import Map from '../components/Map'
 function Routes() {
   const auth = useSelector(getCurrentUser)
   const dispatch = useDispatch()

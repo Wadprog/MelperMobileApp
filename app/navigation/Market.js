@@ -1,20 +1,22 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 
 import Market from '../screens/MarketList'
 import Cart from '../screens/Cart'
 import StoreScreen from '../screens/StoreScreen'
 import StoreItemDetailsScreen from '../screens/StoreItemDetailsScreen'
 
-import {useNavigation } from '@react-navigation/native'
 import FoodApp from './FoodApp'
 import SecondHand from './SecondHand'
 import Clothes from './ClothesApp'
+import Taxi from './TaxiApp'
+import routes from './routes'
 const Stack = createStackNavigator()
 
 const ProductNavigator = () => {
-  const navigation =useNavigation()
+  const navigation = useNavigation()
   return (
     <Stack.Navigator
       screenOptions={{
@@ -51,7 +53,9 @@ const ProductNavigator = () => {
       <Stack.Screen name="SecondHand" component={SecondHand} />
       <Stack.Screen name="Clothes" component={Clothes} />
       <Stack.Screen name="cart" component={Cart} />
+      <Stack.Screen name={routes.TAXI_HOME} component={Taxi} />
     </Stack.Navigator>
-  )}
+  )
+}
 
 export default ProductNavigator
