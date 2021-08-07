@@ -56,7 +56,9 @@ const GoTo = ({ navigation }) => {
           marginTop: 'auto',
         }}
       >
-        <Chip icon="car">Rides</Chip>
+        <Chip icon="car" onPress={() => navigation.navigate('other')}>
+          Rides
+        </Chip>
         <Chip icon="car">Eats</Chip>
       </View>
     </SafeAreaView>

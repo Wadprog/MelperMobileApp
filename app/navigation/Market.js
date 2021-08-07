@@ -20,6 +20,7 @@ const ProductNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
+        title: '',
         headerRight: () => (
           <MaterialCommunityIcons
             size={24}
@@ -53,7 +54,11 @@ const ProductNavigator = () => {
       <Stack.Screen name="SecondHand" component={SecondHand} />
       <Stack.Screen name="Clothes" component={Clothes} />
       <Stack.Screen name="cart" component={Cart} />
-      <Stack.Screen name={routes.TAXI_HOME} component={Taxi} />
+      <Stack.Screen
+        name={routes.TAXI_HOME}
+        component={Taxi}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   )
 }

@@ -7,7 +7,7 @@ const Stack = createStackNavigator()
 
 import routes from './routes'
 const TaxiApp = () => (
-  <Stack.Navigator screenOptions={{}}>
+  <Stack.Navigator screenOptions={{headerShown:false}}>
     <Stack.Screen name={routes.TAXI_MAP} component={MapScreen} />
     <Stack.Screen name={routes.TAXI_HOME} component={Home} />
     {/* <Stack.Screen name="ScreenG1" component={Order} /> */}

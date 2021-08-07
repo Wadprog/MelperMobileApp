@@ -4,17 +4,17 @@ import styled from 'styled-components/native'
 import MapView, { Marker } from 'react-native-maps'
 import MapViewDirections from 'react-native-maps-directions'
 import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
 
-import { useNavigation } from '@react-navigation/native'
 import * as Location from 'expo-location'
 // Custom dependencies
-import Screen from '../../components/Screen'
-import FavoritesPlaces from '../../components/FavoritesPlaces'
+
+
 import config from '../../config'
 import { GOOGLE_MAP_API_KEY } from '../../env'
 import { getLocation } from '../../store/map'
 import { createStackNavigator } from '@react-navigation/stack'
-import { setDepartureFrom } from '../../store/map'
+import { setDepartureFrom, setTravelTimeInformation } from '../../store/map'
 
 import GOTO from '../../components/GoTo'
 import OTHER from '../../components/OTHER'
@@ -34,7 +34,6 @@ function TaxiMap(props) {
     cb(location)
   }
 
-  const map = useSelector(getLocation)
   const currentLocation = useSelector(getLocation).currentLocation
   const destination = useSelector(getLocation).destination
   const Stack = createStackNavigator()
@@ -60,98 +59,131 @@ function TaxiMap(props) {
       edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
     })
   }, [destination, currentLocation])
-  console.log({ map })
+
+  useEffect(() => {
+    if (!destination || !currentLocation) return
+    const getTravelTime = async () => {
+      const desLoc = destination.location
+      const orignLoc = currentLocation.location
+      const destLocTex = `${desLoc.lat},${desLoc.lng}`
+      const originLocText = `${orignLoc.lat},${orignLoc.lng}`
+      console.log({ destLocTex, originLocText })
+
+      axios
+        .get(
+          `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${originLocText}&destinations=${destLocTex}&key=${GOOGLE_MAP_API_KEY}`
+        )
+        .then((data) => {
+          const info = data.data.rows[0].elements[0]
+          console.log({ info })
+          if (info.status === 'OK') dispatch(setTravelTimeInformation(info))
+        })
+        .catch((err) => console.log(err.message))
+    }
+    getTravelTime()
+  }, [destination, currentLocation])
   return (
-    <Screen>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS == 'ios' ? -64 : 0}
+    >
+      <HalfScreen>
+        {currentLocation?.location?.lat && (
+          <MapView
+            ref={mapRef}
+            mapType="mutedStandard"
+            style={{ flex: 1 }}
+            initialRegion={{
+              latitude: currentLocation?.location.lat,
+              longitude: currentLocation?.location.lng,
+              latitudeDelta: 0.005,
+              longitudeDelta: 0.005,
+            }}
+          >
+            {currentLocation?.location && (
+              <Marker
+                coordinate={{
+                  latitude: currentLocation?.location.lat,
+                  longitude: currentLocation?.location.lng,
+                }}
+                draggable={true}
+                onDragEnd={(e) => {
+                  console.log(e.nativeEvent)
+                  dispatch(
+                    setDepartureFrom({
+                      location: {
+                        lat: e.nativeEvent.coordinate.latitude,
+                        lng: e.nativeEvent.coordinate.longitude,
+                      },
+                      description: 'Haiti, Port-au-Prince, Haiti',
+                    })
+                  )
+                }}
+                title="Pick Up Location"
+                description={'The driver will pick you here'}
+                identifier="origin"
+              />
+            )}
+            {destination?.location && (
+              <Marker
+                coordinate={{
+                  latitude: destination.location.lat,
+                  longitude: destination.location.lng,
+                }}
+                title="Destination Location"
+                description={destination?.description}
+                identifier="destination"
+              />
+            )}
+
+            {currentLocation?.location && destination?.location && (
+              <MapViewDirections
+                origin={{
+                  ...currentLocation,
+                  latitude: currentLocation.location.lat,
+                  longitude: currentLocation.location.lng,
+                  latitudeDelta: 0.005,
+                  longitudeDelta: 0.005,
+                }}
+                destination={{
+                  ...destination,
+                  latitude: destination.location.lat,
+                  longitude: destination.location.lng,
+                  latitudeDelta: 0.005,
+                  longitudeDelta: 0.005,
+                }}
+                apikey={GOOGLE_MAP_API_KEY}
+                strokeWidth={3}
+                strokeColor="black"
+              />
+            )}
+          </MapView>
+        )}
+      </HalfScreen>
+
+      <HalfScreen
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS == 'ios' ? -64 : 0}
       >
-        <HalfScreen>
-          {currentLocation?.location?.lat && (
-            <MapView
-              ref={mapRef}
-              mapType="mutedStandard"
-              style={{ flex: 1 }}
-              initialRegion={{
-                latitude: currentLocation?.location.lat,
-                longitude: currentLocation?.location.lng,
-                latitudeDelta: 0.005,
-                longitudeDelta: 0.005,
-              }}
-            >
-              {currentLocation?.location && (
-                <Marker
-                  coordinate={{
-                    latitude: currentLocation?.location.lat,
-                    longitude: currentLocation?.location.lng,
-                  }}
-                  title="Pick Up Location"
-                  description={currentLocation?.description}
-                  identifier="origin"
-                />
-              )}
-              {destination?.location && (
-                <Marker
-                  coordinate={{
-                    latitude: destination.location.lat,
-                    longitude: destination.location.lng,
-                  }}
-                  title="Destination Location"
-                  description={destination?.description}
-                  identifier="destination"
-                />
-              )}
-
-              {currentLocation?.location && destination?.location && (
-                <MapViewDirections
-                  origin={{
-                    ...currentLocation,
-                    latitude: currentLocation.location.lat,
-                    longitude: currentLocation.location.lng,
-                    latitudeDelta: 0.005,
-                    longitudeDelta: 0.005,
-                  }}
-                  destination={{
-                    ...destination,
-                    latitude: destination.location.lat,
-                    longitude: destination.location.lng,
-                    latitudeDelta: 0.005,
-                    longitudeDelta: 0.005,
-                  }}
-                  apikey={GOOGLE_MAP_API_KEY}
-                  strokeWidth={3}
-                  strokeColor="black"
-                />
-              )}
-            </MapView>
-          )}
-        </HalfScreen>
-
-        <HalfScreen
-          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-          keyboardVerticalOffset={Platform.OS == 'ios' ? -64 : 0}
-        >
-          <Stack.Navigator>
-            <Stack.Screen
-              name="goto"
-              component={GOTO}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="other"
-              component={OTHER}
-              options={{
-                headerShown: false,
-              }}
-            />
-          </Stack.Navigator>
-        </HalfScreen>
-      </KeyboardAvoidingView>
-    </Screen>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="goto"
+            component={GOTO}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="other"
+            component={OTHER}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack.Navigator>
+      </HalfScreen>
+    </KeyboardAvoidingView>
   )
 }
 

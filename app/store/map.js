@@ -2,10 +2,11 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   position: null,
-  origin: false,
+  origin: null,
   error: null,
   destination: null,
   currentLocation: null,
+  travelTimeInformation: null,
 }
 const Map = createSlice({
   name: 'map',
@@ -23,10 +24,20 @@ const Map = createSlice({
     setOrigin: (state, action) => {
       loc.origin = action.payload
     },
+    setTravelTimeInformation: (state, action) => {
+      console.log('Receiving info')
+      console.log(action.payload)
+      state.travelTimeInformation = action.payload
+    },
   },
 })
 
 export default Map.reducer
-export const { setPosition, setOrigin, setDepartureFrom, setDestination } =
-  Map.actions
+export const {
+  setPosition,
+  setOrigin,
+  setDepartureFrom,
+  setDestination,
+  setTravelTimeInformation,
+} = Map.actions
 export const getLocation = (state) => state.map
